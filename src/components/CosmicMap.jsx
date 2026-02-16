@@ -193,10 +193,10 @@ export const CosmicMap = () => {
   return (
     <div className="
       relative w-full bg-[#000814] text-white font-sans
-      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden pb-24
+      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden pb-32
       md:block md:h-screen md:overflow-hidden md:pb-0 touch-pan-y
     ">
-      {/* 1. 배경 (Fixed) */}
+      {/* 1. 배경 (Fixed & Optimized for Mobile Visibility) */}
       <div className="fixed inset-0 z-0 bg-slate-950" />
       <img
         src="/futuristic_city_bg.png"
@@ -227,20 +227,23 @@ export const CosmicMap = () => {
         </div>
       )}
 
-      {/* Candidate Image - Adjusted for Mobile Card Look */}
-      <img
-        src="/images/campaign_poster.jpg"
-        alt="Candidate"
-        className={`fixed left-0 top-0 h-screen w-auto object-cover z-10 pointer-events-none select-none
-          ${isMobile ? 'opacity-30 max-w-full object-top blur-[2px]' : 'opacity-90 max-w-[65vw] object-left-top'}
-        `}
-        style={isMobile ? { maskImage: 'linear-gradient(to bottom, black 0%, transparent 80%)' } : { maskImage: 'linear-gradient(to right, black 40%, transparent 90%)' }}
-      />
+      {/* Candidate Image - Optimized for Mobile Background Visibility */}
+      <div className={`fixed inset-0 z-10 pointer-events-none select-none ${isMobile ? 'bg-fixed bg-[position:30%_center] bg-cover' : ''}`}
+        style={isMobile ? { backgroundImage: 'url(/images/campaign_poster.jpg)', opacity: 0.4 } : {}}
+      >
+        {!isMobile && (
+          <img
+            src="/images/campaign_poster.jpg"
+            alt="Candidate"
+            className="fixed left-0 top-0 h-screen w-auto object-cover opacity-90 max-w-[65vw] object-left-top"
+            style={{ maskImage: 'linear-gradient(to right, black 40%, transparent 90%)' }}
+          />
+        )}
+      </div>
 
-      {/* Desktop Header (Hidden on Mobile now, handled by new Sticky Header) */}
+      {/* Desktop Header */}
       {!isMobile && (
         <header className="relative z-50 pt-16 md:pt-16 pb-4 text-center select-none shrink-0 pointer-events-none px-4 w-full">
-          {/* ... existing desktop header component ... */}
           <h1 className="text-7xl font-black tracking-tighter mb-2">
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-300 to-slate-500">
               남궁형
@@ -249,7 +252,7 @@ export const CosmicMap = () => {
         </header>
       )}
 
-      {/* Mobile Title Block (Replaces Header for flow) */}
+      {/* Mobile Title Block */}
       {isMobile && (
         <div className="relative z-30 pt-20 px-6 text-center mb-8">
           <h1 className="text-5xl font-black tracking-tighter mb-1 text-white drop-shadow-2xl">
@@ -266,7 +269,7 @@ export const CosmicMap = () => {
         transition={{ delay: 0.5, duration: 1, type: "spring" }}
         className={`z-40 flex flex-col pointer-events-none ${isMobile ? 'relative w-full px-6 mb-12 items-center' : 'absolute top-8 right-10 items-end'}`}
       >
-        <h2 className={`font-black tracking-tight text-white drop-shadow-lg mb-2 ${isMobile ? 'text-2xl' : 'text-2xl text-right'}`}>
+        <h2 className={`font-black tracking-tight text-white drop-shadow-lg mb-2 ${isMobile ? 'text-2xl text-center backdrop-blur-sm bg-black/20 rounded-lg px-2' : 'text-2xl text-right'}`}>
           제물포 민생 대전환
         </h2>
         <h2 className={`
@@ -292,7 +295,7 @@ export const CosmicMap = () => {
           className={`
             text-left
             ${isMobile
-              ? 'w-full bg-slate-900/80 backdrop-blur-xl border-2 border-slate-700/50 rounded-3xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.5)]' // Aggressive Card Style
+              ? 'w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-xl'
               : 'w-full max-w-xl bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8 backdrop-blur-xl rounded-3xl border border-white/5'
             }
           `}
@@ -301,7 +304,7 @@ export const CosmicMap = () => {
             <span className="w-1.5 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6]"></span>
             걸어온 길
           </h3>
-          <ul className={`space-y-3 font-medium ${isMobile ? 'text-sm text-slate-300' : 'text-lg text-slate-200'}`}>
+          <ul className={`space-y-3 font-medium ${isMobile ? 'text-sm text-slate-200' : 'text-lg text-slate-200'}`}>
             {[
               "인천대학교 행정대학원 행정학 석사",
               "제8대 인천광역시의회 의원 (청년특별위원장)",
@@ -337,12 +340,12 @@ export const CosmicMap = () => {
         {isMobile && (
           <div className="mb-6 flex items-center gap-4">
             <div className="h-px bg-white/20 flex-1" />
-            <h3 className="text-xl font-black text-white whitespace-nowrap">우리 동네 공약</h3>
+            <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">우리 동네 공약</h3>
             <div className="h-px bg-white/20 flex-1" />
           </div>
         )}
 
-        <div className={`${isMobile ? 'grid grid-cols-3 gap-3 w-full' : 'absolute inset-0 pointer-events-auto'}`}>
+        <div className={`${isMobile ? 'grid grid-cols-2 sm:grid-cols-3 gap-3 w-full' : 'absolute inset-0 pointer-events-auto'}`}>
           {districtData.map((district, index) => {
             const row = Math.floor(index / 3);
             const col = index % 3;
@@ -357,7 +360,7 @@ export const CosmicMap = () => {
                 className={`
                     cursor-pointer group
                     ${isMobile
-                    ? 'relative flex flex-col items-center justify-center aspect-square bg-slate-800/60 rounded-2xl border-2 border-slate-700/50 active:border-blue-500 active:bg-blue-900/40 transition-all shadow-lg overflow-hidden'
+                    ? 'relative flex flex-col items-center justify-center aspect-square bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 active:border-blue-500 active:bg-blue-900/40 transition-all shadow-lg overflow-hidden'
                     : 'absolute'
                   }
                   `}
@@ -371,11 +374,11 @@ export const CosmicMap = () => {
                 <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
                   <div className={`
                         flex items-center justify-center rounded-full shadow-inner
-                        ${isMobile ? 'w-10 h-10 bg-black/40 mb-2 ring-1 ring-white/10' : 'w-16 h-16 bg-black/40 border border-white/50'} 
+                        ${isMobile ? 'w-12 h-12 bg-black/30 mb-2 ring-1 ring-white/20' : 'w-16 h-16 bg-black/40 border border-white/50'} 
                       `}>
-                    <IconComponent className={`${isMobile ? 'w-5 h-5' : 'w-8 h-8'} text-white`} />
+                    <IconComponent className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]`} />
                   </div>
-                  <span className={`font-bold text-white ${isMobile ? 'text-xs truncate max-w-[90%]' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
+                  <span className={`font-bold text-white drop-shadow-md ${isMobile ? 'text-xs truncate max-w-[90%]' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
                     {district.name}
                   </span>
                 </div>
