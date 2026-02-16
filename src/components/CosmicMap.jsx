@@ -193,15 +193,15 @@ export const CosmicMap = () => {
   return (
     <div className="
       relative w-full bg-[#000814] text-white font-sans
-      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden
-      md:block md:h-screen md:overflow-hidden touch-pan-y
+      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden pb-20
+      md:block md:h-screen md:overflow-hidden md:pb-0 touch-pan-y
     ">
       {/* 1. 배경 & 비주얼 (Fixed for all devices) */}
       <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#0f172a]" />
       <img
         src="/futuristic_city_bg.png"
         alt="Smart City Background"
-        className="fixed inset-0 w-full h-full object-cover opacity-40 mix-blend-screen z-0 pointer-events-none select-none"
+        className="fixed inset-0 w-full h-full object-cover object-center opacity-40 mix-blend-screen z-0 pointer-events-none select-none"
       />
       <div
         className="fixed inset-0 z-0 opacity-20 pointer-events-none"
@@ -227,7 +227,7 @@ export const CosmicMap = () => {
       <div className="fixed inset-0 z-10 pointer-events-none bg-radial-gradient-from-c"
         style={{ background: 'radial-gradient(circle at 70% 50%, transparent 0%, rgba(2,6,23,0.4) 50%, rgba(2,6,23,0.9) 100%)' }}
       />
-      {isMobile && <div className="fixed inset-0 z-10 bg-black/60 pointer-events-none" />}
+      {isMobile && <div className="fixed inset-0 z-10 bg-black/40 pointer-events-none" />}
 
       {/* --- Mobile Quick Navigation (Anchor Links) --- */}
       {isMobile && (
@@ -280,8 +280,7 @@ export const CosmicMap = () => {
              font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10
              ${isMobile ? 'text-xl text-center w-full' : 'text-2xl text-right'}
            `}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-100 to-gray-400"
-              style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-100 to-gray-400">
               제물포 민생 대전환
             </span>
           </h2>
@@ -293,16 +292,6 @@ export const CosmicMap = () => {
                 text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
                 ${isMobile ? 'text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
               `}
-              style={{
-                textShadow: `
-                      0 1px 0 #1e40af,
-                      0 2px 0 #1e3a8a,
-                      0 3px 0 #172554,
-                      0 4px 0 #0f172a,
-                      0 5px 10px rgba(0,0,0,1),
-                      0 0 20px rgba(59,130,246,0.6)
-                    `
-              }}
             >
               1조 원 시대
             </h2>
@@ -334,7 +323,7 @@ export const CosmicMap = () => {
           <div className={`
             backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl w-full
             ${isMobile
-              ? 'bg-black/60 p-6 border-white/10' // Improved Mobile Visibility
+              ? 'bg-black/30 p-6 border-white/10' // More transparent as requested
               : 'bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8'
             }
           `}>
@@ -412,7 +401,7 @@ export const CosmicMap = () => {
                 className={`
                   cursor-pointer group
                   ${isMobile
-                    ? 'relative flex flex-col items-center justify-center w-full aspect-square bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-2 hover:bg-white/10 transition-colors'
+                    ? 'relative flex flex-col items-center justify-center w-full aspect-square bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 hover:bg-white/10 transition-colors'
                     : 'absolute'
                   }
                 `}
@@ -436,7 +425,7 @@ export const CosmicMap = () => {
                 </div>
 
                 <span className={`
-                    font-bold text-white tracking-wide text-center truncate w-full
+                    font-bold text-white tracking-wide text-center truncate w-full drop-shadow-lg
                     ${isMobile ? 'text-[11px]' : 'mt-2 bg-black/60 rounded-full px-3 py-1 text-xs border border-white/10'}
                   `}>
                   {district.name}
@@ -447,25 +436,34 @@ export const CosmicMap = () => {
         </div>
       </div>
 
-      {/* Mobile Only Social Links */}
+      {/* Mobile Footer (SNS Links) */}
       {isMobile && (
-        <div className="relative z-40 w-full px-6 pb-24 flex flex-col gap-3 order-5">
-          {/* Condensed for brevity, functionality preserved */}
-          <div className="flex gap-2 justify-center w-full">
-            <a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="flex-1 bg-black/60 p-4 rounded-2xl border border-white/10 flex flex-col items-center gap-2">
-              <Book className="w-6 h-6 text-green-400" />
-              <span className="text-xs font-bold text-slate-300">위키</span>
+        <footer className="relative z-40 w-full bg-black/80 backdrop-blur-lg border-t border-white/10 p-6 flex flex-col gap-4 order-5">
+          <div className="flex justify-center items-center gap-2 mb-2">
+            <span className="w-1 h-1 rounded-full bg-blue-500"></span>
+            <h4 className="text-sm font-bold text-slate-300">공식 소통 채널</h4>
+            <span className="w-1 h-1 rounded-full bg-blue-500"></span>
+          </div>
+
+          <div className="flex gap-3 justify-center w-full">
+            <a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="flex-1 bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 flex flex-col items-center gap-2 transition-colors">
+              <Book className="w-5 h-5 text-green-400" />
+              <span className="text-[10px] font-bold text-slate-300">나무위키</span>
             </a>
-            <a href="https://www.instagram.com/namlider123" target="_blank" className="flex-1 bg-black/60 p-4 rounded-2xl border border-white/10 flex flex-col items-center gap-2">
-              <Instagram className="w-6 h-6 text-pink-500" />
-              <span className="text-xs font-bold text-slate-300">인스타</span>
+            <a href="https://www.instagram.com/namlider123" target="_blank" className="flex-1 bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 flex flex-col items-center gap-2 transition-colors">
+              <Instagram className="w-5 h-5 text-pink-500" />
+              <span className="text-[10px] font-bold text-slate-300">인스타그램</span>
             </a>
-            <a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="flex-1 bg-black/60 p-4 rounded-2xl border border-white/10 flex flex-col items-center gap-2">
-              <Facebook className="w-6 h-6 text-blue-500" />
-              <span className="text-xs font-bold text-slate-300">페이스북</span>
+            <a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="flex-1 bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 flex flex-col items-center gap-2 transition-colors">
+              <Facebook className="w-5 h-5 text-blue-500" />
+              <span className="text-[10px] font-bold text-slate-300">페이스북</span>
             </a>
           </div>
-        </div>
+
+          <div className="text-center mt-4">
+            <p className="text-[10px] text-slate-600">© 2026 Namgung Hyung Camp. All Right Reserved.</p>
+          </div>
+        </footer>
       )}
 
       {/* 5. 정책 상세 모달: High-End Futuristic Glassmorphism */}
