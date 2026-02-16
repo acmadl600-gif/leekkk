@@ -240,12 +240,12 @@ export const CosmicMap = () => {
       />
 
       {/* 2. 상단 브랜딩 영역: Metallic & Neon Typography */}
-      <header className="relative z-50 pt-12 lg:pt-16 text-center select-none shrink-0 pointer-events-none">
+      <header className="relative z-50 pt-12 lg:pt-16 text-center select-none shrink-0 pointer-events-none px-4">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, type: "spring" }}
-          className="text-6xl md:text-7xl font-black tracking-tighter mb-2"
+          className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-2"
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-300 to-slate-500 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]"
             style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))' }}>
@@ -260,18 +260,18 @@ export const CosmicMap = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 1, type: "spring" }}
         className={`
-           z-40 flex flex-col pointer-events-none
+           z-40 flex flex-col pointer-events-none w-full
            ${isMobile
-            ? 'relative w-full items-center mt-[45vh] mb-8'
+            ? 'relative items-center mt-[40vh] mb-8'
             : 'absolute top-8 right-10 items-end'
           }
          `}
       >
-        <div className={`relative flex flex-col ${isMobile ? 'items-center' : 'items-end'}`}>
+        <div className={`relative flex flex-col ${isMobile ? 'items-center w-full px-4' : 'items-end'}`}>
           {/* Main Slogan Text */}
           <h2 className={`
-             font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10
-             ${isMobile ? 'text-xl text-center' : 'text-2xl text-right'}
+             font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10 w-full
+             ${isMobile ? 'text-lg sm:text-xl text-center' : 'text-2xl text-right'}
            `}>
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-100 to-gray-400"
               style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
@@ -280,11 +280,11 @@ export const CosmicMap = () => {
           </h2>
 
           {/* "1 Trillion Era" - Monumental 3D Focus */}
-          <div className="relative mt-0 md:-mt-1">
+          <div className="relative mt-0 md:-mt-1 w-full flex justify-center md:block">
             <h2 className={`
                 font-[900] tracking-tighter italic transform -skew-x-6
                 text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
-                ${isMobile ? 'text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
+                ${isMobile ? 'text-4xl sm:text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
               `}
               style={{
                 textShadow: `
@@ -303,7 +303,7 @@ export const CosmicMap = () => {
             <h2 className={`
                 absolute top-full w-full font-[900] tracking-tighter italic transform -skew-x-6 scale-y-[-0.3] origin-top opacity-30 select-none pointer-events-none
                 text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
-                ${isMobile ? 'text-5xl text-center left-0' : 'text-6xl lg:text-7xl text-right right-0'}
+                ${isMobile ? 'text-4xl sm:text-5xl text-center left-0 right-0 mx-auto' : 'text-6xl lg:text-7xl text-right right-0'}
               `}
             >
               1조 원 시대
@@ -318,7 +318,7 @@ export const CosmicMap = () => {
       <div className={`
         z-40 transition-all duration-500
         ${isMobile
-          ? 'relative w-full px-4 mb-12 flex flex-col gap-6'
+          ? 'relative w-full px-4 mb-12 flex flex-col gap-6 items-center'
           : 'fixed bottom-10 left-10 flex items-end gap-6'
         }
       `}>
@@ -330,33 +330,33 @@ export const CosmicMap = () => {
           className={`
             text-left
             ${isMobile
-              ? 'w-full mx-auto'
+              ? 'w-full'
               : 'w-full max-w-xl'
             }
           `}
         >
           <div className={`
-            backdrop-blur-xl rounded-3xl border border-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
+            backdrop-blur-xl rounded-3xl border border-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] w-full
             ${isMobile
-              ? 'bg-gradient-to-br from-black/40 via-blue-900/10 to-transparent p-6'
+              ? 'bg-gradient-to-br from-black/40 via-blue-900/10 to-transparent p-5'
               : 'bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8'
             }
           `}>
-            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-4 ${isMobile ? 'text-2xl justify-center' : 'text-3xl'}`}>
-              <span className="w-2 h-10 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></span>
+            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-4 ${isMobile ? 'text-xl justify-center' : 'text-3xl'}`}>
+              <span className="w-2 h-8 md:h-10 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></span>
               걸어온 길 & 나아갈 길
             </h3>
-            <ul className={`space-y-4 text-slate-200 font-medium tracking-tight opacity-95 ${isMobile ? 'text-base leading-[1.8]' : 'text-lg leading-relaxed'}`}>
-              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>인천대학교 행정대학원 행정학 석사</li>
-              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>제8대 인천광역시의회 의원 (청년특별위원장)</li>
-              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>대통령 소속 자치분권위원회 정책자문위원</li>
-              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>대통령 직속 국가균형발전위 국민소통특별위원</li>
-              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>제20대 대선 이재명 후보 선거캠프 실무팀장</li>
-              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>더불어민주당 전략기획위원회 부위원장</li>
-              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>단국대학교 초빙교수 (현)</li>
-              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>더불어민주당 중앙당 부대변인 (현)</li>
-              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>(사)제물포정책연구원장 (현)</li>
-              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>박찬대 국회의원 정책특별보좌관 (현)</li>
+            <ul className={`space-y-3 md:space-y-4 text-slate-200 font-medium tracking-tight opacity-95 ${isMobile ? 'text-sm sm:text-base leading-relaxed' : 'text-lg leading-relaxed'}`}>
+              <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>인천대학교 행정대학원 행정학 석사</li>
+              <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>제8대 인천광역시의회 의원 (청년특별위원장)</li>
+              <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>대통령 소속 자치분권위원회 정책자문위원</li>
+              <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>대통령 직속 국가균형발전위 국민소통특별위원</li>
+              <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>제20대 대선 이재명 후보 선거캠프 실무팀장</li>
+              <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>더불어민주당 전략기획위원회 부위원장</li>
+              <li className="flex gap-2 md:gap-3 font-bold text-white"><span className="text-yellow-400 mt-1 min-w-[10px]">▪</span>단국대학교 초빙교수 (현)</li>
+              <li className="flex gap-2 md:gap-3 font-bold text-white"><span className="text-yellow-400 mt-1 min-w-[10px]">▪</span>더불어민주당 중앙당 부대변인 (현)</li>
+              <li className="flex gap-2 md:gap-3 font-bold text-white"><span className="text-yellow-400 mt-1 min-w-[10px]">▪</span>(사)제물포정책연구원장 (현)</li>
+              <li className="flex gap-2 md:gap-3 font-bold text-white"><span className="text-yellow-400 mt-1 min-w-[10px]">▪</span>박찬대 국회의원 정책특별보좌관 (현)</li>
             </ul>
           </div>
         </motion.div>
@@ -447,7 +447,7 @@ export const CosmicMap = () => {
         {/* Container for interactive nodes */}
         <div className={`
           ${isMobile
-            ? 'grid grid-cols-3 gap-6 pointer-events-auto'
+            ? 'grid grid-cols-3 gap-3 sm:gap-6 pointer-events-auto w-full'
             : 'absolute inset-0 pointer-events-auto'
           }
         `}>
@@ -467,17 +467,17 @@ export const CosmicMap = () => {
                 onClick={() => setSelectedId(district.id)}
                 className={`
                   cursor-pointer group
-                  ${isMobile ? 'relative flex flex-col items-center justify-center' : 'absolute'}
+                  ${isMobile ? 'relative flex flex-col items-center justify-center w-full' : 'absolute'}
                 `}
                 style={{ top, left }}
                 animate={isMobile ? {} : { y: [0, -8, 0] }} // Disable floating animation on mobile grid for stability
                 transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1, ease: "easeInOut" }}
               >
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center w-full">
                   <div
                     className={`
                       relative rounded-full flex items-center justify-center transition-all duration-300
-                      ${isMobile ? 'w-16 h-16' : 'w-16 h-16 group-hover:scale-110'}
+                      ${isMobile ? 'w-12 h-12 sm:w-16 sm:h-16' : 'w-16 h-16 group-hover:scale-110'}
                     `}
                   >
                     {/* Neon Glow Background - Intensified */}
@@ -486,7 +486,7 @@ export const CosmicMap = () => {
 
                     {/* Glassmorphic Circle */}
                     <div className="relative w-full h-full rounded-full bg-black/40 backdrop-blur-md border-[1.5px] border-white/50 flex items-center justify-center shadow-[inset_0_0_15px_rgba(255,255,255,0.4)]">
-                      <IconComponent className={`${isMobile ? 'w-8 h-8' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
+                      <IconComponent className={`${isMobile ? 'w-6 h-6 sm:w-8 sm:h-8' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
                     </div>
 
                     {/* Connecting Line (Decorative - Desktop Only) */}
@@ -494,9 +494,9 @@ export const CosmicMap = () => {
                   </div>
 
                   <span className={`
-                    mt-3 font-bold text-white tracking-wide text-center
-                    bg-black/60 rounded-full backdrop-blur-md border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.5)]
-                    ${isMobile ? 'text-xs px-2 py-1' : 'text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
+                    mt-2 sm:mt-3 font-bold text-white tracking-wide text-center
+                    bg-black/60 rounded-full backdrop-blur-md border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.5)] w-full truncate px-1
+                    ${isMobile ? 'text-[10px] sm:text-xs py-0.5' : 'text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
                   `}>
                     {district.name}
                   </span>
@@ -509,23 +509,23 @@ export const CosmicMap = () => {
 
       {/* Mobile Only Social Links (Stacked at Bottom) */}
       {isMobile && (
-        <div className="relative z-40 w-full px-6 pb-12 flex flex-col gap-4">
+        <div className="relative z-40 w-full px-6 pb-12 flex flex-col gap-3">
           {/* Namuwiki Link Button */}
           <motion.a
             href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 group w-full bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="flex items-center gap-4 group w-full bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-400 via-emerald-500 to-green-600 rounded-full blur opacity-75 animate-pulse"></div>
-              <div className="relative bg-black rounded-full p-2 border border-white/20">
-                <Book className="w-6 h-6 text-white" />
+              <div className="relative bg-black rounded-full p-1.5 border border-white/20">
+                <Book className="w-5 h-5 text-white" />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-gray-400 font-medium">Read on Namuwiki</span>
-              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-500 to-green-600">
+              <span className="text-[10px] text-gray-400 font-medium">Read on Namuwiki</span>
+              <span className="text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-500 to-green-600">
                 남궁형 위키
               </span>
             </div>
@@ -536,17 +536,17 @@ export const CosmicMap = () => {
             href="https://www.instagram.com/namlider123"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 group w-full bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="flex items-center gap-4 group w-full bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full blur opacity-75 animate-pulse"></div>
-              <div className="relative bg-black rounded-full p-2 border border-white/20">
-                <Instagram className="w-6 h-6 text-white" />
+              <div className="relative bg-black rounded-full p-1.5 border border-white/20">
+                <Instagram className="w-5 h-5 text-white" />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-gray-400 font-medium">Follow on Instagram</span>
-              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600">
+              <span className="text-[10px] text-gray-400 font-medium">Follow on Instagram</span>
+              <span className="text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600">
                 @namlider123
               </span>
             </div>
@@ -557,17 +557,17 @@ export const CosmicMap = () => {
             href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 group w-full bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="flex items-center gap-4 group w-full bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 via-blue-600 to-indigo-700 rounded-full blur opacity-75 animate-pulse"></div>
-              <div className="relative bg-black rounded-full p-2 border border-white/20">
-                <Facebook className="w-6 h-6 text-white" />
+              <div className="relative bg-black rounded-full p-1.5 border border-white/20">
+                <Facebook className="w-5 h-5 text-white" />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-gray-400 font-medium">Follow on Facebook</span>
-              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-700">
+              <span className="text-[10px] text-gray-400 font-medium">Follow on Facebook</span>
+              <span className="text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-700">
                 남궁형
               </span>
             </div>
@@ -589,16 +589,16 @@ export const CosmicMap = () => {
                 bg-[#0f172a]/80 backdrop-blur-xl
                 rounded-3xl border border-blue-400/30
                 shadow-[0_0_50px_rgba(59,130,246,0.3)]
-                p-8
+                p-6 sm:p-8 m-4
               "
             >
               {/* Soft Blue Glowing Edge Effect (Inner Shadow) */}
               <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-[inset_0_0_20px_rgba(59,130,246,0.2)]" />
 
               {/* Header: Title & Close Button */}
-              <div className="flex justify-between items-start mb-6 border-b border-blue-500/20 pb-4 relative z-10">
+              <div className="flex justify-between items-start mb-4 sm:mb-6 border-b border-blue-500/20 pb-4 relative z-10 w-full">
                 <h3
-                  className="text-4xl font-black text-white tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                  className="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
                 >
                   {selectedDistrict.name}
                 </h3>
@@ -611,16 +611,16 @@ export const CosmicMap = () => {
               </div>
 
               {/* Content: Promise & Features */}
-              <div className="space-y-6 mb-8 relative z-10">
+              <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8 relative z-10 w-full">
                 {/* Main Quote / Promise */}
-                <div className="bg-gradient-to-r from-blue-900/40 to-transparent p-5 rounded-xl border-l-4 border-blue-500">
-                  <p className="text-xl font-medium leading-relaxed italic text-blue-100/90">
+                <div className="bg-gradient-to-r from-blue-900/40 to-transparent p-4 sm:p-5 rounded-xl border-l-4 border-blue-500 w-full">
+                  <p className="text-base sm:text-xl font-medium leading-relaxed italic text-blue-100/90 breakdown-words">
                     "{selectedDistrict.promise}"
                   </p>
                 </div>
 
                 {/* Dynamic Features List with Neon Icons */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3 w-full">
                   {selectedDistrict.features ? (
                     selectedDistrict.features.map((feature, idx) => {
                       const icons = [Zap, Store, Users];
@@ -633,11 +633,11 @@ export const CosmicMap = () => {
                       ];
 
                       return (
-                        <div key={idx} className="flex items-center gap-4 group">
-                          <div className="p-2 rounded-full bg-white/5 border border-white/10 group-hover:border-white/30 transition-colors">
-                            <Icon className={`w-5 h-5 ${iconColors[idx % 3]}`} />
+                        <div key={idx} className="flex items-center gap-3 sm:gap-4 group w-full">
+                          <div className="p-1.5 sm:p-2 rounded-full bg-white/5 border border-white/10 group-hover:border-white/30 transition-colors shrink-0">
+                            <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${iconColors[idx % 3]}`} />
                           </div>
-                          <span className="text-slate-200 font-bold text-base tracking-wide group-hover:text-white transition-colors">
+                          <span className="text-slate-200 font-bold text-sm sm:text-base tracking-wide group-hover:text-white transition-colors">
                             {feature}
                           </span>
                         </div>
@@ -653,11 +653,11 @@ export const CosmicMap = () => {
               </div>
 
               {/* Footer: Action Button (Vibrant & Pulsing) */}
-              <div className="flex flex-col gap-3 items-center relative z-10">
+              <div className="flex flex-col gap-3 items-center relative z-10 w-full">
                 <button
                   onClick={() => window.open('https://youtube.com', '_blank')}
                   className="
-                    group relative flex items-center gap-3 px-8 py-4 
+                    group relative flex items-center justify-center gap-3 px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto
                     bg-gradient-to-r from-red-600 to-rose-600 
                     hover:from-red-500 hover:to-rose-500
                     rounded-full text-white shadow-[0_0_20px_rgba(225,29,72,0.4)] 
@@ -665,8 +665,8 @@ export const CosmicMap = () => {
                   "
                 >
                   <span className="absolute inset-0 rounded-full animate-pulse bg-red-500/30 blur-md"></span>
-                  <Youtube className="w-6 h-6 z-10 fill-white" />
-                  <span className="text-base font-black tracking-wider uppercase z-10">공약 쇼츠 영상 보기</span>
+                  <Youtube className="w-5 h-5 sm:w-6 sm:h-6 z-10 fill-white" />
+                  <span className="text-sm sm:text-base font-black tracking-wider uppercase z-10">공약 쇼츠 영상 보기</span>
                 </button>
                 <span className="text-[10px] text-blue-400/80 font-bold uppercase tracking-[0.2em] mt-3">
                   2026 Future City Project
@@ -676,6 +676,7 @@ export const CosmicMap = () => {
           </div>
         )}
       </AnimatePresence>
+
     </div>
   );
 };
