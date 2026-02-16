@@ -208,7 +208,7 @@ export const CosmicMap = () => {
       {isMobile && (
         <div className="fixed top-0 left-0 right-0 z-[60] bg-black/60 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-between items-center shadow-lg">
           <span className="text-lg font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-            NAMGUNG
+            NAMGUNG HYUNG
           </span>
           <div className="flex gap-2">
             <button
@@ -374,11 +374,11 @@ export const CosmicMap = () => {
                 <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
                   <div className={`
                         flex items-center justify-center rounded-full shadow-inner
-                        ${isMobile ? 'w-12 h-12 bg-black/30 mb-2 ring-1 ring-white/20' : 'w-16 h-16 bg-black/40 border border-white/50'} 
+                        ${isMobile ? 'w-12 h-12 bg-black/30 mb-2 ring-1 ring-white/20' : 'w-16 h-16 bg-black/40 border border-white/50'}
                       `}>
                     <IconComponent className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]`} />
                   </div>
-                  <span className={`font-bold text-white drop-shadow-md ${isMobile ? 'text-xs truncate max-w-[90%]' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
+                  <span className={`font-bold text-white drop-shadow-md ${isMobile ? 'text-[11px] px-2 text-center whitespace-normal break-keep leading-tight' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
                     {district.name}
                   </span>
                 </div>
