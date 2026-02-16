@@ -1,0 +1,681 @@
+import React, { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  MapPin, X, Users, Store, Zap, Youtube,
+  Utensils, Anchor, HeartPulse, Home, BookOpen, Star, Landmark,
+  Factory, Palette, Cpu, ShoppingBag, Trees, HardHat, HandHeart,
+  School, Building2, Coins, Book, Instagram, Facebook
+} from 'lucide-react';
+
+// 제물포구 18개 행정동 데이터 (공약 기반 매핑 & 아이콘 & 색상테마)
+const districtData = [
+  {
+    id: 1,
+    name: "신포동",
+    promise: "청년 공공안심상가 및 K-푸드 스마트 허브 연계",
+    features: ["전통시장 내 청년 안심상가 조성", "제물포 코인(지역화폐) 캐시백 15%", "글로벌 관광 클러스터 특화"],
+    icon: Utensils,
+    color: "from-orange-500 to-red-600",
+    shadow: "shadow-orange-500/50"
+  },
+  {
+    id: 2,
+    name: "연안동",
+    promise: "K-푸드 스마트 허브 구축 및 인천지하철 3호선 연안부두역 신설",
+    features: ["스마트 콜드체인 물류 허브 도입", "해양특화 경제자유구역 지정 추진", "인천 3호선(순환선) 조기 착공"],
+    icon: Anchor,
+    color: "from-cyan-400 to-blue-600",
+    shadow: "shadow-cyan-500/50"
+  },
+  {
+    id: 3,
+    name: "신흥동",
+    promise: "빈 점포 활용 예술가 레지던시 및 맞춤형 헬스케어 확대",
+    features: ["문화예술 창작촌(레지던시) 조성", "마음건강 119 의료 안전망 가동", "노후 주거 환경 '안심 家' 정비"],
+    icon: HeartPulse,
+    color: "from-pink-500 to-rose-600",
+    shadow: "shadow-pink-500/50"
+  },
+  {
+    id: 4,
+    name: "도원동",
+    promise: "역세권 청년 주거 혁신 및 원스톱 통합 돌봄 플랫폼 구축",
+    features: ["역세권 청년 올인원 주거 타운", "늘봄학교 연계 틈새 돌봄 강화", "제물포 AI 민원 버스 정기 순회"],
+    icon: Home,
+    color: "from-emerald-400 to-teal-600",
+    shadow: "shadow-emerald-500/50"
+  },
+  {
+    id: 5,
+    name: "율목동",
+    promise: "주민 향유형 문화 거점(구민청) 조성 및 숲속 도서관 건립",
+    features: ["권역별 제물포 구민청(세대공감) 조성", "율목공원 숲속 도서관 건립", "어르신 스마트 헬스케어 경로당"],
+    icon: BookOpen,
+    color: "from-green-400 to-green-700",
+    shadow: "shadow-green-500/50"
+  },
+  {
+    id: 6,
+    name: "동인천동",
+    promise: "동인천역 북광장 랜드마크화 및 문화야시장 브랜드화",
+    features: ["북광장 복합 랜드마크 개발", "제물포 '골든위크' 문화야시장", "상권 르네네상스 프로젝트 가동"],
+    icon: Star,
+    color: "from-violet-500 to-purple-700",
+    shadow: "shadow-violet-500/50"
+  },
+  {
+    id: 7,
+    name: "개항동",
+    promise: "인천역 KTX 시대 개막 및 제물포 웨이(We-sharing) 관광 거점",
+    features: ["인천역 KTX 시점 연장 추진", "근대 문화유산 디지털 트윈 복원", "제물포형 로컬 크리에이터 육성"],
+    icon: Landmark,
+    color: "from-amber-300 to-yellow-600",
+    shadow: "shadow-amber-500/50"
+  },
+  {
+    id: 8,
+    name: "만석동",
+    promise: "산학융합 테크노-벨트 조성 및 동일방직 부지 문화 재생",
+    features: ["기회발전특구 지정(세제 혜택)", "동일방직 부지 복합 문화공간화", "뿌리산업 AI 기술 고도화 지원"],
+    icon: Factory,
+    color: "from-slate-400 to-slate-600",
+    shadow: "shadow-slate-500/50"
+  },
+  {
+    id: 9,
+    name: "화수1·화평동",
+    promise: "문화예술 창작촌(레지던시) 조성 및 노후 주거 쾌적화",
+    features: ["빈집 활용 예술가 레지던시 공급", "노후 주택 낙상 예방 집수리", "주민 주도 마을 관리소 운영"],
+    icon: Palette,
+    color: "from-fuchsia-400 to-purple-600",
+    shadow: "shadow-fuchsia-500/50"
+  },
+  {
+    id: 10,
+    name: "화수2동",
+    promise: "기회발전특구 지정 추진 및 첨단 뿌리산업 클러스터 조성",
+    features: ["산학융합 '마이크로 팩토리' 유치", "제물포 구민청(문화혁신) 조성", "일자리 연계형 청년 주택 공급"],
+    icon: Cpu,
+    color: "from-indigo-400 to-blue-600",
+    shadow: "shadow-indigo-500/50"
+  },
+  {
+    id: 11,
+    name: "송현1·2동",
+    promise: "전통시장 현대화 및 청년 창업 '공공안심상가' 지원",
+    features: ["중앙시장 청년 공공안심상가", "시장 연계 문화 관광 상품 개발", "보행자 중심 '걷고 싶은 거리'"],
+    icon: ShoppingBag,
+    color: "from-orange-400 to-red-500",
+    shadow: "shadow-orange-500/50"
+  },
+  {
+    id: 12,
+    name: "송현3동",
+    promise: "산업단지 대개조 및 친환경 녹색 일자리 창출",
+    features: ["산업단지 주변 녹지 완충 조성", "햇빛발전협동조합 '에너지 연금'", "친환경 그린 일자리 500개 확보"],
+    icon: Trees,
+    color: "from-lime-400 to-green-600",
+    shadow: "shadow-lime-500/50"
+  },
+  {
+    id: 13,
+    name: "송림1동",
+    promise: "신속한 재개발 추진 및 정주 여건 대폭 개선",
+    features: ["재개발 사업 신속 행정 지원", "무인 방범 시스템 CCTV 확충", "쓰레기 무단 투기 제로화"],
+    icon: HardHat,
+    color: "from-teal-400 to-cyan-600",
+    shadow: "shadow-teal-500/50"
+  },
+  {
+    id: 14,
+    name: "송림2동",
+    promise: "어르신 '안심 家' 집수리 지원 및 통합 돌봄 센터 확충",
+    features: ["낙상 예방 고령친화 집수리", "다함께돌봄센터 확충", "찾아가는 AI 이동 보건소"],
+    icon: HandHeart,
+    color: "from-rose-300 to-pink-500",
+    shadow: "shadow-rose-500/50"
+  },
+  {
+    id: 15,
+    name: "송림3·5동",
+    promise: "아동·청소년 안전 통학로 조성 및 교육 특화 거리 육성",
+    features: ["스마트 횡단보도 및 안심 통학로", "청소년 진로 체험 '잡 월드' 연계", "마을 도서관 활성화 프로그램"],
+    icon: School,
+    color: "from-sky-400 to-blue-500",
+    shadow: "shadow-sky-500/50"
+  },
+  {
+    id: 16,
+    name: "송림4동",
+    promise: "송림플라자 '청년 올인원 센터' 및 행정타운 조성",
+    features: ["송림플라자 리모델링(청년 창업/주거)", "제물포 행정타운 연계 상권 활성화", "대학 연계 AI 교육 특구 유치"],
+    icon: Building2,
+    color: "from-blue-500 to-indigo-700",
+    shadow: "shadow-blue-500/50"
+  },
+  {
+    id: 17,
+    name: "송림6동",
+    promise: "소상공인 경영안정수당 지급 및 골목상권 활성화",
+    features: ["소상공인 경영안정 자금 지원", "골목상권 '브랜드 페스타' 개최", "상가 앞 주차 허용 구간 탄력 운영"],
+    icon: Coins,
+    color: "from-yellow-400 to-amber-500",
+    shadow: "shadow-yellow-500/50"
+  },
+  {
+    id: 18,
+    name: "금창동",
+    promise: "배다리 역사문화 거리 명소화 및 로컬 크리에이터 육성",
+    features: ["배다리 책방 거리 '지식 플랫폼'화", "로컬 크리에이터 100인 육성", "근대 역사 문화 탐방로 조성"],
+    icon: Book,
+    color: "from-amber-600 to-orange-800",
+    shadow: "shadow-amber-600/50"
+  }
+];
+
+export const CosmicMap = () => {
+  const [selectedId, setSelectedId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 화면 크기 감지 및 반응형 상태 업데이트
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // 초기 실행
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 성능 최적화: 선택된 데이터 안전하게 탐색
+  const selectedDistrict = useMemo(() =>
+    districtData.find(d => d.id === selectedId), [selectedId]
+  );
+
+  return (
+    <div className={`
+      relative w-full min-h-screen bg-[#000814] text-white font-sans flex flex-col
+      ${isMobile ? 'overflow-y-auto overflow-x-hidden' : 'overflow-hidden'}
+    `}>
+      {/* 1. 배경 & 비주얼: 미래지향적 스마트 시티 테마 */}
+      {/* Base Gradient */}
+      <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#0f172a]" />
+
+      {/* Futuristic City Background Image Overlay */}
+      <img
+        src="/futuristic_city_bg.png" // Generated Image
+        alt="Smart City Background"
+        className="fixed inset-0 w-full h-full object-cover opacity-40 mix-blend-screen z-0 pointer-events-none select-none"
+      />
+
+      {/* Grid Pattern Overlay for "Blueprint" feel */}
+      <div
+        className="fixed inset-0 z-0 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }}
+      />
+
+      {/* Candidate Image: Dramatic Lighting & Integration */}
+      <img
+        src="/images/campaign_poster.jpg"
+        alt="Candidate Campaign Poster"
+        className={`fixed left-0 top-0 h-screen w-auto object-cover z-10 pointer-events-none select-none transition-all duration-700 ease-out
+          ${isMobile ? 'opacity-50 max-w-full object-top' : 'opacity-90 max-w-[65vw] object-left-top'}
+        `}
+        style={{
+          WebkitMaskImage: isMobile
+            ? 'linear-gradient(to bottom, black 50%, transparent 95%)'
+            : 'linear-gradient(to right, black 40%, transparent 90%)',
+          maskImage: isMobile
+            ? 'linear-gradient(to bottom, black 50%, transparent 95%)'
+            : 'linear-gradient(to right, black 40%, transparent 90%)',
+          filter: 'drop-shadow(0 0 20px rgba(0,0,0,0.8)) saturate(1.1) contrast(1.1) brightness(1.1)',
+          mixBlendMode: 'normal' // Ensure visibility over dark bg
+        }}
+      />
+
+      {/* Vignette Overlay for Focus */}
+      <div className="fixed inset-0 z-10 pointer-events-none bg-radial-gradient-from-c"
+        style={{ background: 'radial-gradient(circle at 70% 50%, transparent 0%, rgba(2,6,23,0.4) 50%, rgba(2,6,23,0.9) 100%)' }}
+      />
+
+      {/* 2. 상단 브랜딩 영역: Metallic & Neon Typography */}
+      <header className="relative z-50 pt-12 lg:pt-16 text-center select-none shrink-0 pointer-events-none">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, type: "spring" }}
+          className="text-6xl md:text-7xl font-black tracking-tighter mb-2"
+        >
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-300 to-slate-500 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]"
+            style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))' }}>
+            남궁형
+          </span>
+        </motion.h1>
+      </header>
+
+      {/* 3D Slogan Container - Responsive Positioning */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5, duration: 1, type: "spring" }}
+        className={`
+           z-40 flex flex-col pointer-events-none
+           ${isMobile
+            ? 'relative w-full items-center mt-[45vh] mb-8'
+            : 'absolute top-8 right-10 items-end'
+          }
+         `}
+      >
+        <div className={`relative flex flex-col ${isMobile ? 'items-center' : 'items-end'}`}>
+          {/* Main Slogan Text */}
+          <h2 className={`
+             font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10
+             ${isMobile ? 'text-xl text-center' : 'text-2xl text-right'}
+           `}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-100 to-gray-400"
+              style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+              제물포 민생 대전환
+            </span>
+          </h2>
+
+          {/* "1 Trillion Era" - Monumental 3D Focus */}
+          <div className="relative mt-0 md:-mt-1">
+            <h2 className={`
+                font-[900] tracking-tighter italic transform -skew-x-6
+                text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
+                ${isMobile ? 'text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
+              `}
+              style={{
+                textShadow: `
+                      0 1px 0 #1e40af,
+                      0 2px 0 #1e3a8a,
+                      0 3px 0 #172554,
+                      0 4px 0 #0f172a,
+                      0 5px 10px rgba(0,0,0,1),
+                      0 0 20px rgba(59,130,246,0.6)
+                    `
+              }}
+            >
+              1조 원 시대
+            </h2>
+            {/* Reflection Effect */}
+            <h2 className={`
+                absolute top-full w-full font-[900] tracking-tighter italic transform -skew-x-6 scale-y-[-0.3] origin-top opacity-30 select-none pointer-events-none
+                text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
+                ${isMobile ? 'text-5xl text-center left-0' : 'text-6xl lg:text-7xl text-right right-0'}
+              `}
+            >
+              1조 원 시대
+            </h2>
+            {/* Energy Core Glow */}
+            <div className="absolute inset-0 blur-xl bg-blue-500/20 mix-blend-screen animate-pulse pointer-events-none" />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* 4. 후보자 주요 약력 (Mobile: Flow, Desktop: Fixed Bottom-Left) */}
+      <div className={`
+        z-40 transition-all duration-500
+        ${isMobile
+          ? 'relative w-full px-4 mb-12 flex flex-col gap-6'
+          : 'fixed bottom-10 left-10 flex items-end gap-6'
+        }
+      `}>
+        {/* Candidate History */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className={`
+            text-left
+            ${isMobile
+              ? 'w-full mx-auto'
+              : 'w-full max-w-xl'
+            }
+          `}
+        >
+          <div className={`
+            backdrop-blur-xl rounded-3xl border border-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
+            ${isMobile
+              ? 'bg-gradient-to-br from-black/40 via-blue-900/10 to-transparent p-6'
+              : 'bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8'
+            }
+          `}>
+            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-4 ${isMobile ? 'text-2xl justify-center' : 'text-3xl'}`}>
+              <span className="w-2 h-10 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></span>
+              걸어온 길 & 나아갈 길
+            </h3>
+            <ul className={`space-y-4 text-slate-200 font-medium tracking-tight opacity-95 ${isMobile ? 'text-base leading-[1.8]' : 'text-lg leading-relaxed'}`}>
+              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>인천대학교 행정대학원 행정학 석사</li>
+              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>제8대 인천광역시의회 의원 (청년특별위원장)</li>
+              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>대통령 소속 자치분권위원회 정책자문위원</li>
+              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>대통령 직속 국가균형발전위 국민소통특별위원</li>
+              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>제20대 대선 이재명 후보 선거캠프 실무팀장</li>
+              <li className="flex gap-3"><span className="text-blue-500/80 mt-1">▪</span>더불어민주당 전략기획위원회 부위원장</li>
+              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>단국대학교 초빙교수 (현)</li>
+              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>더불어민주당 중앙당 부대변인 (현)</li>
+              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>(사)제물포정책연구원장 (현)</li>
+              <li className="flex gap-3 font-bold text-white"><span className="text-yellow-400 mt-1">▪</span>박찬대 국회의원 정책특별보좌관 (현)</li>
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* Desktop Only Social Links Wrapper */}
+        {!isMobile && (
+          <>
+            {/* Namuwiki Link Button */}
+            <motion.a
+              href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex items-center gap-3 group shrink-0 mb-0"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-teal-400 via-emerald-500 to-green-600 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                <div className="relative bg-black rounded-full p-2 border border-white/20">
+                  <Book className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs text-gray-400 font-medium">Read on Namuwiki</span>
+                <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-500 to-green-600 group-hover:from-teal-300 group-hover:via-emerald-400 group-hover:to-green-500 transition-all">
+                  남궁형 위키
+                </span>
+              </div>
+            </motion.a>
+
+            {/* Instagram Link Button */}
+            <motion.a
+              href="https://www.instagram.com/namlider123"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex items-center gap-3 group shrink-0 mb-0"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                <div className="relative bg-black rounded-full p-2 border border-white/20">
+                  <Instagram className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs text-gray-400 font-medium">Follow on Instagram</span>
+                <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 group-hover:from-yellow-300 group-hover:via-red-400 group-hover:to-purple-500 transition-all">
+                  @namlider123
+                </span>
+              </div>
+            </motion.a>
+
+            {/* Facebook Link Button */}
+            <motion.a
+              href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              className="flex items-center gap-3 group shrink-0 mb-0"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 via-blue-600 to-indigo-700 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                <div className="relative bg-black rounded-full p-2 border border-white/20">
+                  <Facebook className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs text-gray-400 font-medium">Follow on Facebook</span>
+                <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-700 group-hover:from-blue-300 group-hover:via-blue-500 group-hover:to-indigo-600 transition-all">
+                  남궁형
+                </span>
+              </div>
+            </motion.a>
+          </>
+        )}
+      </div>
+
+      {/* 3. 지도 노드 / 아이콘 그리드 (Mobile: Grid Layout, Desktop: Map Layout) */}
+      <div className={`
+        relative z-30 w-full pointer-events-none
+        ${isMobile ? 'px-4 pb-20' : 'flex-grow h-screen'}
+      `}>
+        {/* Container for interactive nodes */}
+        <div className={`
+          ${isMobile
+            ? 'grid grid-cols-3 gap-6 pointer-events-auto'
+            : 'absolute inset-0 pointer-events-auto'
+          }
+        `}>
+          {districtData.map((district, index) => {
+            const row = Math.floor(index / 3);
+            const col = index % 3;
+
+            // Desktop Positioning Logic
+            const top = isMobile ? 'auto' : `calc(15% + (${row} * 11%))`;
+            const left = isMobile ? 'auto' : `calc(68% + (${col} * 9%))`;
+
+            const IconComponent = district.icon || MapPin;
+
+            return (
+              <motion.div
+                key={district.id}
+                onClick={() => setSelectedId(district.id)}
+                className={`
+                  cursor-pointer group
+                  ${isMobile ? 'relative flex flex-col items-center justify-center' : 'absolute'}
+                `}
+                style={{ top, left }}
+                animate={isMobile ? {} : { y: [0, -8, 0] }} // Disable floating animation on mobile grid for stability
+                transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1, ease: "easeInOut" }}
+              >
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`
+                      relative rounded-full flex items-center justify-center transition-all duration-300
+                      ${isMobile ? 'w-16 h-16' : 'w-16 h-16 group-hover:scale-110'}
+                    `}
+                  >
+                    {/* Neon Glow Background - Intensified */}
+                    <div className={`absolute inset-0 rounded-full blur-xl opacity-90 bg-gradient-to-r ${district.color} animate-pulse`} />
+                    <div className={`absolute -inset-2 rounded-full blur-2xl opacity-40 bg-gradient-to-r ${district.color}`} />
+
+                    {/* Glassmorphic Circle */}
+                    <div className="relative w-full h-full rounded-full bg-black/40 backdrop-blur-md border-[1.5px] border-white/50 flex items-center justify-center shadow-[inset_0_0_15px_rgba(255,255,255,0.4)]">
+                      <IconComponent className={`${isMobile ? 'w-8 h-8' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
+                    </div>
+
+                    {/* Connecting Line (Decorative - Desktop Only) */}
+                    {!isMobile && <div className="absolute -bottom-8 w-px h-8 bg-gradient-to-b from-white/50 to-transparent -z-10" />}
+                  </div>
+
+                  <span className={`
+                    mt-3 font-bold text-white tracking-wide text-center
+                    bg-black/60 rounded-full backdrop-blur-md border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.5)]
+                    ${isMobile ? 'text-xs px-2 py-1' : 'text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
+                  `}>
+                    {district.name}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile Only Social Links (Stacked at Bottom) */}
+      {isMobile && (
+        <div className="relative z-40 w-full px-6 pb-12 flex flex-col gap-4">
+          {/* Namuwiki Link Button */}
+          <motion.a
+            href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 group w-full bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+          >
+            <div className="relative shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-tr from-teal-400 via-emerald-500 to-green-600 rounded-full blur opacity-75 animate-pulse"></div>
+              <div className="relative bg-black rounded-full p-2 border border-white/20">
+                <Book className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs text-gray-400 font-medium">Read on Namuwiki</span>
+              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-500 to-green-600">
+                남궁형 위키
+              </span>
+            </div>
+          </motion.a>
+
+          {/* Instagram Link Button */}
+          <motion.a
+            href="https://www.instagram.com/namlider123"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 group w-full bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+          >
+            <div className="relative shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full blur opacity-75 animate-pulse"></div>
+              <div className="relative bg-black rounded-full p-2 border border-white/20">
+                <Instagram className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs text-gray-400 font-medium">Follow on Instagram</span>
+              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600">
+                @namlider123
+              </span>
+            </div>
+          </motion.a>
+
+          {/* Facebook Link Button */}
+          <motion.a
+            href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 group w-full bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+          >
+            <div className="relative shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 via-blue-600 to-indigo-700 rounded-full blur opacity-75 animate-pulse"></div>
+              <div className="relative bg-black rounded-full p-2 border border-white/20">
+                <Facebook className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs text-gray-400 font-medium">Follow on Facebook</span>
+              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-700">
+                남궁형
+              </span>
+            </div>
+          </motion.a>
+        </div>
+      )}
+
+      {/* 5. 정책 상세 모달: High-End Futuristic Glassmorphism */}
+      <AnimatePresence>
+        {selectedId && selectedDistrict && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="
+                relative w-full max-w-lg overflow-hidden
+                bg-[#0f172a]/80 backdrop-blur-xl
+                rounded-3xl border border-blue-400/30
+                shadow-[0_0_50px_rgba(59,130,246,0.3)]
+                p-8
+              "
+            >
+              {/* Soft Blue Glowing Edge Effect (Inner Shadow) */}
+              <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-[inset_0_0_20px_rgba(59,130,246,0.2)]" />
+
+              {/* Header: Title & Close Button */}
+              <div className="flex justify-between items-start mb-6 border-b border-blue-500/20 pb-4 relative z-10">
+                <h3
+                  className="text-4xl font-black text-white tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                >
+                  {selectedDistrict.name}
+                </h3>
+                <button
+                  onClick={() => setSelectedId(null)}
+                  className="p-2 hover:bg-white/10 rounded-full transition-colors group"
+                >
+                  <X className="w-6 h-6 text-slate-300 group-hover:text-white group-hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
+                </button>
+              </div>
+
+              {/* Content: Promise & Features */}
+              <div className="space-y-6 mb-8 relative z-10">
+                {/* Main Quote / Promise */}
+                <div className="bg-gradient-to-r from-blue-900/40 to-transparent p-5 rounded-xl border-l-4 border-blue-500">
+                  <p className="text-xl font-medium leading-relaxed italic text-blue-100/90">
+                    "{selectedDistrict.promise}"
+                  </p>
+                </div>
+
+                {/* Dynamic Features List with Neon Icons */}
+                <div className="space-y-3">
+                  {selectedDistrict.features ? (
+                    selectedDistrict.features.map((feature, idx) => {
+                      const icons = [Zap, Store, Users];
+                      const Icon = icons[idx % 3];
+                      // Neon colors for icons
+                      const iconColors = [
+                        "text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]",
+                        "text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.6)]",
+                        "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
+                      ];
+
+                      return (
+                        <div key={idx} className="flex items-center gap-4 group">
+                          <div className="p-2 rounded-full bg-white/5 border border-white/10 group-hover:border-white/30 transition-colors">
+                            <Icon className={`w-5 h-5 ${iconColors[idx % 3]}`} />
+                          </div>
+                          <span className="text-slate-200 font-bold text-base tracking-wide group-hover:text-white transition-colors">
+                            {feature}
+                          </span>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    // Fallback
+                    <>
+                      <div className="flex items-center gap-4"><Zap className="w-5 h-5 text-yellow-400" /> 에너지 연금 시범 사업 실시</div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Footer: Action Button (Vibrant & Pulsing) */}
+              <div className="flex flex-col gap-3 items-center relative z-10">
+                <button
+                  onClick={() => window.open('https://youtube.com', '_blank')}
+                  className="
+                    group relative flex items-center gap-3 px-8 py-4 
+                    bg-gradient-to-r from-red-600 to-rose-600 
+                    hover:from-red-500 hover:to-rose-500
+                    rounded-full text-white shadow-[0_0_20px_rgba(225,29,72,0.4)] 
+                    transition-all duration-300 transform hover:scale-105
+                  "
+                >
+                  <span className="absolute inset-0 rounded-full animate-pulse bg-red-500/30 blur-md"></span>
+                  <Youtube className="w-6 h-6 z-10 fill-white" />
+                  <span className="text-base font-black tracking-wider uppercase z-10">공약 쇼츠 영상 보기</span>
+                </button>
+                <span className="text-[10px] text-blue-400/80 font-bold uppercase tracking-[0.2em] mt-3">
+                  2026 Future City Project
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};

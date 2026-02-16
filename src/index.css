@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #0f172a; /* Dark background */
+  color: white;
+}
+
+body {
+  margin: 0;
+  overflow: hidden; /* Prevent scroll */
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-button {
+  background: rgba(0, 78, 162, 0.3); /* Democratic Blue tint */
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 78, 162, 0.5);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(0, 78, 162, 0.6);
+  box-shadow: 0 0 15px rgba(0, 78, 162, 0.5);
+}
+
+/* Custom Scrollbar for policy details if needed */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
