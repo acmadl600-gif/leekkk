@@ -193,121 +193,98 @@ export const CosmicMap = () => {
   return (
     <div className="
       relative w-full bg-[#000814] text-white font-sans
-      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden pb-20
+      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden pb-24
       md:block md:h-screen md:overflow-hidden md:pb-0 touch-pan-y
     ">
-      {/* 1. 배경 & 비주얼 (Fixed for all devices) */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#0f172a]" />
+      {/* 1. 배경 (Fixed) */}
+      <div className="fixed inset-0 z-0 bg-slate-950" />
       <img
         src="/futuristic_city_bg.png"
-        alt="Smart City Background"
-        className="fixed inset-0 w-full h-full object-cover object-center opacity-40 mix-blend-screen z-0 pointer-events-none select-none"
+        alt="Background"
+        className="fixed inset-0 w-full h-full object-cover object-center opacity-30 z-0 pointer-events-none"
       />
-      <div
-        className="fixed inset-0 z-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}
-      />
-      {/* Candidate Image (Fixed) */}
-      <img
-        src="/images/campaign_poster.jpg"
-        alt="Candidate Campaign Poster"
-        className={`fixed left-0 top-0 h-screen w-auto object-cover z-10 pointer-events-none select-none transition-all duration-700 ease-out
-          ${isMobile ? 'opacity-40 max-w-full object-top' : 'opacity-90 max-w-[65vw] object-left-top'}
-        `}
-        style={{
-          maskImage: isMobile
-            ? 'linear-gradient(to bottom, black 40%, transparent 90%)'
-            : 'linear-gradient(to right, black 40%, transparent 90%)'
-        }}
-      />
-      {/* Vignette & Mobile Overlay (Fixed) */}
-      <div className="fixed inset-0 z-10 pointer-events-none bg-radial-gradient-from-c"
-        style={{ background: 'radial-gradient(circle at 70% 50%, transparent 0%, rgba(2,6,23,0.4) 50%, rgba(2,6,23,0.9) 100%)' }}
-      />
-      {isMobile && <div className="fixed inset-0 z-10 bg-black/40 pointer-events-none" />}
 
-      {/* --- Mobile Quick Navigation (Anchor Links) --- */}
+      {/* 2. Mobile App-Style Header (New) */}
       {isMobile && (
-        <div className="fixed top-4 right-4 z-[60] flex gap-2">
-          <button onClick={() => document.getElementById('section-profile')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-blue-600/80 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-white/20 shadow-lg">
-            프로필
-          </button>
-          <button onClick={() => document.getElementById('section-map')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-indigo-600/80 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-white/20 shadow-lg">
-            공약지도
-          </button>
+        <div className="fixed top-0 left-0 right-0 z-[60] bg-black/60 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-between items-center shadow-lg">
+          <span className="text-lg font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+            NAMGUNG
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => document.getElementById('section-profile')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+              className="px-3 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all"
+            >
+              프로필
+            </button>
+            <button
+              onClick={() => document.getElementById('section-map')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              className="px-3 py-1.5 text-xs font-bold bg-blue-600/80 rounded-full border border-blue-400/30 shadow-[0_0_10px_rgba(37,99,235,0.4)] active:scale-95 transition-all"
+            >
+              공약지도
+            </button>
+          </div>
         </div>
       )}
 
-      {/* 2. 상단 브랜딩 영역 */}
-      <header className={`
-        relative z-50 pt-16 pb-4 text-center select-none shrink-0 pointer-events-none px-4 w-full
-        ${isMobile ? 'order-1' : ''}
-      `}>
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, type: "spring" }}
-          className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-2"
-        >
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-300 to-slate-500 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]"
-            style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))' }}>
-            남궁형
-          </span>
-        </motion.h1>
-      </header>
+      {/* Candidate Image - Adjusted for Mobile Card Look */}
+      <img
+        src="/images/campaign_poster.jpg"
+        alt="Candidate"
+        className={`fixed left-0 top-0 h-screen w-auto object-cover z-10 pointer-events-none select-none
+          ${isMobile ? 'opacity-30 max-w-full object-top blur-[2px]' : 'opacity-90 max-w-[65vw] object-left-top'}
+        `}
+        style={isMobile ? { maskImage: 'linear-gradient(to bottom, black 0%, transparent 80%)' } : { maskImage: 'linear-gradient(to right, black 40%, transparent 90%)' }}
+      />
 
-      {/* 3D Slogan Container */}
+      {/* Desktop Header (Hidden on Mobile now, handled by new Sticky Header) */}
+      {!isMobile && (
+        <header className="relative z-50 pt-16 md:pt-16 pb-4 text-center select-none shrink-0 pointer-events-none px-4 w-full">
+          {/* ... existing desktop header component ... */}
+          <h1 className="text-7xl font-black tracking-tighter mb-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-300 to-slate-500">
+              남궁형
+            </span>
+          </h1>
+        </header>
+      )}
+
+      {/* Mobile Title Block (Replaces Header for flow) */}
+      {isMobile && (
+        <div className="relative z-30 pt-20 px-6 text-center mb-8">
+          <h1 className="text-5xl font-black tracking-tighter mb-1 text-white drop-shadow-2xl">
+            남궁형
+          </h1>
+          <p className="text-blue-400 font-bold tracking-widest text-sm uppercase">Next Generation Leader</p>
+        </div>
+      )}
+
+      {/* Slogan */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 1, type: "spring" }}
-        className={`
-           z-40 flex flex-col pointer-events-none
-           ${isMobile
-            ? 'relative w-full items-center mb-10 px-4 order-2'
-            : 'absolute top-8 right-10 items-end'
-          }
-         `}
+        className={`z-40 flex flex-col pointer-events-none ${isMobile ? 'relative w-full px-6 mb-12 items-center' : 'absolute top-8 right-10 items-end'}`}
       >
-        <div className={`relative flex flex-col ${isMobile ? 'items-center w-full' : 'items-end'}`}>
-          {/* Main Slogan Text */}
-          <h2 className={`
-             font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10
-             ${isMobile ? 'text-xl text-center w-full' : 'text-2xl text-right'}
-           `}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-100 to-gray-400">
-              제물포 민생 대전환
-            </span>
-          </h2>
-
-          {/* "1 Trillion Era" */}
-          <div className={`relative mt-0 md:-mt-1 ${isMobile ? 'w-full flex justify-center' : ''}`}>
-            <h2 className={`
-                font-[900] tracking-tighter italic transform -skew-x-6
-                text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
-                ${isMobile ? 'text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
-              `}
-            >
-              1조 원 시대
-            </h2>
-          </div>
-        </div>
+        <h2 className={`font-black tracking-tight text-white drop-shadow-lg mb-2 ${isMobile ? 'text-2xl' : 'text-2xl text-right'}`}>
+          제물포 민생 대전환
+        </h2>
+        <h2 className={`
+          font-[900] italic transform -skew-x-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600
+          ${isMobile ? 'text-6xl drop-shadow-[0_4px_0_rgba(0,0,0,0.5)]' : 'text-7xl text-right'}
+        `}>
+          1조 원 시대
+        </h2>
       </motion.div>
 
-      {/* 4. 후보자 주요 약력 (ID for Anchor) */}
+      {/* 4. Profile Section - CARD STYLE */}
       <div id="section-profile" className={`
         z-40 transition-all duration-500
         ${isMobile
-          ? 'relative w-full px-4 mb-16 flex flex-col gap-6 items-center order-3 scroll-mt-20'
+          ? 'relative w-full px-4 mb-20 flex flex-col items-center scroll-mt-24'
           : 'fixed bottom-10 left-10 flex items-end gap-6'
         }
       `}>
-        {/* Candidate History */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -315,45 +292,37 @@ export const CosmicMap = () => {
           className={`
             text-left
             ${isMobile
-              ? 'w-full'
-              : 'w-full max-w-xl'
+              ? 'w-full bg-slate-900/80 backdrop-blur-xl border-2 border-slate-700/50 rounded-3xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.5)]' // Aggressive Card Style
+              : 'w-full max-w-xl bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8 backdrop-blur-xl rounded-3xl border border-white/5'
             }
           `}
         >
-          <div className={`
-            backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl w-full
-            ${isMobile
-              ? 'bg-black/30 p-6 border-white/10' // More transparent as requested
-              : 'bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8'
-            }
-          `}>
-            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-4 ${isMobile ? 'text-2xl justify-center' : 'text-3xl'}`}>
-              <span className="w-2 h-8 md:h-10 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></span>
-              걸어온 길 & 나아갈 길
-            </h3>
-            <ul className={`space-y-3 text-slate-200 font-medium tracking-tight opacity-95 ${isMobile ? 'text-sm leading-relaxed' : 'text-lg'}`}>
-              {[
-                "인천대학교 행정대학원 행정학 석사",
-                "제8대 인천광역시의회 의원 (청년특별위원장)",
-                "대통령 소속 자치분권위원회 정책자문위원",
-                "대통령 직속 국가균형발전위 국민소통특별위원",
-                "제20대 대선 이재명 후보 선거캠프 실무팀장",
-                "더불어민주당 전략기획위원회 부위원장",
-                "단국대학교 초빙교수 (현)",
-                "더불어민주당 중앙당 부대변인 (현)",
-                "(사)제물포정책연구원장 (현)",
-                "박찬대 국회의원 정책특별보좌관 (현)"
-              ].map((item, i) => (
-                <li key={i} className={`flex gap-2 ${item.includes("(현)") ? "font-bold text-white" : ""}`}>
-                  <span className={`${item.includes("(현)") ? "text-yellow-400" : "text-blue-500"} mt-1 min-w-[10px]`}>▪</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-3 ${isMobile ? 'text-2xl border-b border-white/10 pb-4' : 'text-3xl'}`}>
+            <span className="w-1.5 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6]"></span>
+            걸어온 길
+          </h3>
+          <ul className={`space-y-3 font-medium ${isMobile ? 'text-sm text-slate-300' : 'text-lg text-slate-200'}`}>
+            {[
+              "인천대학교 행정대학원 행정학 석사",
+              "제8대 인천광역시의회 의원 (청년특별위원장)",
+              "대통령 소속 자치분권위원회 정책자문위원",
+              "대통령 직속 국가균형발전위 국민소통특별위원",
+              "제20대 대선 이재명 후보 선거캠프 실무팀장",
+              "더불어민주당 전략기획위원회 부위원장",
+              "단국대학교 초빙교수 (현)",
+              "더불어민주당 중앙당 부대변인 (현)",
+              "(사)제물포정책연구원장 (현)",
+              "박찬대 국회의원 정책특별보좌관 (현)"
+            ].map((item, i) => (
+              <li key={i} className={`flex gap-3 ${item.includes("(현)") ? "text-white font-bold" : ""}`}>
+                <span className={`${item.includes("(현)") ? "text-yellow-400" : "text-blue-500"} min-w-[6px] mt-1.5`}>●</span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
-        {/* Desktop Social Links */}
+        {/* Desktop Socials */}
         {!isMobile && (
           <div className="flex gap-4">
             <motion.a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-green-900/50 transition-colors"><Book className="w-6 h-6 text-white" /></motion.a>
@@ -363,35 +332,22 @@ export const CosmicMap = () => {
         )}
       </div>
 
-      {/* 3. 지도 노드 / 아이콘 그리드 (ID for Anchor) */}
-      <div id="section-map" className={`
-        relative z-30 w-full
-        ${isMobile ? 'px-4 pb-12 order-4 scroll-mt-20' : 'flex-grow h-screen pointer-events-none'}
-      `}>
-        {/* Mobile Title for Grid */}
+      {/* 5. Policy Map Section - GRID STYLE */}
+      <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
         {isMobile && (
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-black text-white mb-2 drop-shadow-md">
-              <span className="text-blue-400">18개 동</span> 공약 보기
-            </h3>
-            <p className="text-sm text-slate-400">아이콘을 터치하여 상세 공약을 확인하세요</p>
+          <div className="mb-6 flex items-center gap-4">
+            <div className="h-px bg-white/20 flex-1" />
+            <h3 className="text-xl font-black text-white whitespace-nowrap">우리 동네 공약</h3>
+            <div className="h-px bg-white/20 flex-1" />
           </div>
         )}
 
-        <div className={`
-          ${isMobile
-            ? 'grid grid-cols-3 gap-3 w-full pb-10' // Force Grid on Mobile
-            : 'absolute inset-0 pointer-events-auto'
-          }
-        `}>
+        <div className={`${isMobile ? 'grid grid-cols-3 gap-3 w-full' : 'absolute inset-0 pointer-events-auto'}`}>
           {districtData.map((district, index) => {
             const row = Math.floor(index / 3);
             const col = index % 3;
-
-            // Desktop Positioning
             const top = isMobile ? 'auto' : `calc(15% + (${row} * 11%))`;
             const left = isMobile ? 'auto' : `calc(68% + (${col} * 9%))`;
-
             const IconComponent = district.icon || MapPin;
 
             return (
@@ -399,71 +355,52 @@ export const CosmicMap = () => {
                 key={district.id}
                 onClick={() => setSelectedId(district.id)}
                 className={`
-                  cursor-pointer group
-                  ${isMobile
-                    ? 'relative flex flex-col items-center justify-center w-full aspect-square bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 hover:bg-white/10 transition-colors'
+                    cursor-pointer group
+                    ${isMobile
+                    ? 'relative flex flex-col items-center justify-center aspect-square bg-slate-800/60 rounded-2xl border-2 border-slate-700/50 active:border-blue-500 active:bg-blue-900/40 transition-all shadow-lg overflow-hidden'
                     : 'absolute'
                   }
-                `}
+                  `}
                 style={{ top, left }}
                 animate={isMobile ? {} : { y: [0, -8, 0] }}
-                transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1, ease: "easeInOut" }}
+                transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
               >
-                <div
-                  className={`
-                      relative rounded-full flex items-center justify-center
-                      ${isMobile ? 'w-10 h-10 mb-2' : 'w-16 h-16 group-hover:scale-110 transition-transform'}
-                    `}
-                >
-                  {/* Neon Glow */}
-                  <div className={`absolute inset-0 rounded-full blur-xl opacity-90 bg-gradient-to-r ${district.color} animate-pulse`} />
-                  <div className="relative w-full h-full rounded-full bg-black/40 backdrop-blur-md border-[1.5px] border-white/50 flex items-center justify-center shadow-inner">
-                    <IconComponent className={`${isMobile ? 'w-5 h-5' : 'w-8 h-8'} text-white drop-shadow-md`} />
+                {/* Mobile Specific Inner Design */}
+                {isMobile && <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${district.color}`} />}
+
+                <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
+                  <div className={`
+                        flex items-center justify-center rounded-full shadow-inner
+                        ${isMobile ? 'w-10 h-10 bg-black/40 mb-2 ring-1 ring-white/10' : 'w-16 h-16 bg-black/40 border border-white/50'} 
+                      `}>
+                    <IconComponent className={`${isMobile ? 'w-5 h-5' : 'w-8 h-8'} text-white`} />
                   </div>
-
-                  {!isMobile && <div className="absolute -bottom-8 w-px h-8 bg-gradient-to-b from-white/50 to-transparent -z-10" />}
+                  <span className={`font-bold text-white ${isMobile ? 'text-xs truncate max-w-[90%]' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
+                    {district.name}
+                  </span>
                 </div>
-
-                <span className={`
-                    font-bold text-white tracking-wide text-center truncate w-full drop-shadow-lg
-                    ${isMobile ? 'text-[11px]' : 'mt-2 bg-black/60 rounded-full px-3 py-1 text-xs border border-white/10'}
-                  `}>
-                  {district.name}
-                </span>
               </motion.div>
-            );
+            )
           })}
         </div>
       </div>
 
-      {/* Mobile Footer (SNS Links) */}
+      {/* Mobile Sticky Footer */}
       {isMobile && (
-        <footer className="relative z-40 w-full bg-black/80 backdrop-blur-lg border-t border-white/10 p-6 flex flex-col gap-4 order-5">
-          <div className="flex justify-center items-center gap-2 mb-2">
-            <span className="w-1 h-1 rounded-full bg-blue-500"></span>
-            <h4 className="text-sm font-bold text-slate-300">공식 소통 채널</h4>
-            <span className="w-1 h-1 rounded-full bg-blue-500"></span>
-          </div>
-
-          <div className="flex gap-3 justify-center w-full">
-            <a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="flex-1 bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 flex flex-col items-center gap-2 transition-colors">
-              <Book className="w-5 h-5 text-green-400" />
-              <span className="text-[10px] font-bold text-slate-300">나무위키</span>
-            </a>
-            <a href="https://www.instagram.com/namlider123" target="_blank" className="flex-1 bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 flex flex-col items-center gap-2 transition-colors">
-              <Instagram className="w-5 h-5 text-pink-500" />
-              <span className="text-[10px] font-bold text-slate-300">인스타그램</span>
-            </a>
-            <a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="flex-1 bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 flex flex-col items-center gap-2 transition-colors">
-              <Facebook className="w-5 h-5 text-blue-500" />
-              <span className="text-[10px] font-bold text-slate-300">페이스북</span>
-            </a>
-          </div>
-
-          <div className="text-center mt-4">
-            <p className="text-[10px] text-slate-600">© 2026 Namgung Hyung Camp. All Right Reserved.</p>
-          </div>
-        </footer>
+        <div className="fixed bottom-0 left-0 right-0 z-[60] bg-[#020617]/90 backdrop-blur-xl border-t border-white/10 p-3 pb-8 grid grid-cols-3 gap-2">
+          <a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all">
+            <Book className="w-5 h-5 text-green-400 mb-1" />
+            <span className="text-[10px] text-slate-400">나무위키</span>
+          </a>
+          <a href="https://www.instagram.com/namlider123" target="_blank" className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all">
+            <Instagram className="w-5 h-5 text-pink-500 mb-1" />
+            <span className="text-[10px] text-slate-400">인스타그램</span>
+          </a>
+          <a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all">
+            <Facebook className="w-5 h-5 text-blue-500 mb-1" />
+            <span className="text-[10px] text-slate-400">페이스북</span>
+          </a>
+        </div>
       )}
 
       {/* 5. 정책 상세 모달: High-End Futuristic Glassmorphism */}
