@@ -193,10 +193,10 @@ export const CosmicMap = () => {
   return (
     <div className="
       relative w-full bg-[#000814] text-white font-sans
-      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden pb-32
+      flex flex-col min-h-[100dvh] pb-40
       md:block md:h-screen md:overflow-hidden md:pb-0 touch-pan-y
     ">
-      {/* 1. 배경 (Fixed & Optimized for Mobile Visibility) */}
+      {/* 1. 배경 (Fixed) */}
       <div className="fixed inset-0 z-0 bg-slate-950" />
       <img
         src="/futuristic_city_bg.png"
