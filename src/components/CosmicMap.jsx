@@ -191,10 +191,11 @@ export const CosmicMap = () => {
   );
 
   return (
-    <div className={`
-      relative w-full min-h-screen bg-[#000814] text-white font-sans flex flex-col
-      ${isMobile ? 'overflow-y-auto overflow-x-hidden' : 'overflow-hidden'}
-    `}>
+    <div className="
+      relative w-full bg-[#000814] text-white font-sans
+      flex flex-col min-h-screen overflow-y-auto overflow-x-hidden
+      md:block md:h-screen md:overflow-hidden
+    ">
       {/* 1. 배경 & 비주얼: 미래지향적 스마트 시티 테마 */}
       {/* Base Gradient */}
       <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#0f172a]" />
@@ -240,7 +241,8 @@ export const CosmicMap = () => {
       />
 
       {/* 2. 상단 브랜딩 영역: Metallic & Neon Typography */}
-      <header className="relative z-50 pt-12 lg:pt-16 text-center select-none shrink-0 pointer-events-none px-4">
+      {/* Mobile: Relative flow, Desktop: Fixed position or Absolute if needed (keeping original relative/z-index structure) */}
+      <header className="relative z-50 pt-12 md:pt-16 text-center select-none shrink-0 pointer-events-none px-4 w-full">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -254,24 +256,24 @@ export const CosmicMap = () => {
         </motion.h1>
       </header>
 
-      {/* 3D Slogan Container - Responsive Positioning */}
+      {/* 3D Slogan Container - Hybrid Positioning */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 1, type: "spring" }}
         className={`
-           z-40 flex flex-col pointer-events-none w-full
+           z-40 flex flex-col pointer-events-none
            ${isMobile
-            ? 'relative items-center mt-[40vh] mb-8'
-            : 'absolute top-8 right-10 items-end'
+            ? 'relative w-full items-center mt-8 mb-8 px-4' // Mobile: Flow with margin
+            : 'absolute top-8 right-10 items-end' // Desktop: Absolute top-right
           }
          `}
       >
-        <div className={`relative flex flex-col ${isMobile ? 'items-center w-full px-4' : 'items-end'}`}>
+        <div className={`relative flex flex-col ${isMobile ? 'items-center w-full' : 'items-end'}`}>
           {/* Main Slogan Text */}
           <h2 className={`
-             font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10 w-full
-             ${isMobile ? 'text-lg sm:text-xl text-center' : 'text-2xl text-right'}
+             font-black tracking-tight text-slate-300 drop-shadow-lg mb-0 relative z-10
+             ${isMobile ? 'text-xl text-center w-full' : 'text-2xl text-right'}
            `}>
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-100 to-gray-400"
               style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
@@ -280,11 +282,11 @@ export const CosmicMap = () => {
           </h2>
 
           {/* "1 Trillion Era" - Monumental 3D Focus */}
-          <div className="relative mt-0 md:-mt-1 w-full flex justify-center md:block">
+          <div className={`relative mt-0 md:-mt-1 ${isMobile ? 'w-full flex justify-center' : ''}`}>
             <h2 className={`
                 font-[900] tracking-tighter italic transform -skew-x-6
                 text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
-                ${isMobile ? 'text-4xl sm:text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
+                ${isMobile ? 'text-5xl text-center' : 'text-6xl lg:text-7xl text-right'}
               `}
               style={{
                 textShadow: `
@@ -303,7 +305,7 @@ export const CosmicMap = () => {
             <h2 className={`
                 absolute top-full w-full font-[900] tracking-tighter italic transform -skew-x-6 scale-y-[-0.3] origin-top opacity-30 select-none pointer-events-none
                 text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
-                ${isMobile ? 'text-4xl sm:text-5xl text-center left-0 right-0 mx-auto' : 'text-6xl lg:text-7xl text-right right-0'}
+                ${isMobile ? 'text-5xl text-center left-0 right-0 mx-auto' : 'text-6xl lg:text-7xl text-right right-0'}
               `}
             >
               1조 원 시대
@@ -318,8 +320,8 @@ export const CosmicMap = () => {
       <div className={`
         z-40 transition-all duration-500
         ${isMobile
-          ? 'relative w-full px-4 mb-12 flex flex-col gap-6 items-center'
-          : 'fixed bottom-10 left-10 flex items-end gap-6'
+          ? 'relative w-full px-6 mb-8 flex flex-col gap-6 items-center order-last' // Mobile: Flow at bottom
+          : 'fixed bottom-10 left-10 flex items-end gap-6' // Desktop: Fixed bottom-left
         }
       `}>
         {/* Candidate History */}
@@ -338,15 +340,15 @@ export const CosmicMap = () => {
           <div className={`
             backdrop-blur-xl rounded-3xl border border-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] w-full
             ${isMobile
-              ? 'bg-gradient-to-br from-black/40 via-blue-900/10 to-transparent p-5'
+              ? 'bg-gradient-to-br from-black/40 via-blue-900/10 to-transparent p-6'
               : 'bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8'
             }
           `}>
-            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-4 ${isMobile ? 'text-xl justify-center' : 'text-3xl'}`}>
+            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-4 ${isMobile ? 'text-2xl justify-center' : 'text-3xl'}`}>
               <span className="w-2 h-8 md:h-10 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></span>
               걸어온 길 & 나아갈 길
             </h3>
-            <ul className={`space-y-3 md:space-y-4 text-slate-200 font-medium tracking-tight opacity-95 ${isMobile ? 'text-sm sm:text-base leading-relaxed' : 'text-lg leading-relaxed'}`}>
+            <ul className={`space-y-3 md:space-y-4 text-slate-200 font-medium tracking-tight opacity-95 ${isMobile ? 'text-sm leading-relaxed' : 'text-lg leading-relaxed'}`}>
               <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>인천대학교 행정대학원 행정학 석사</li>
               <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>제8대 인천광역시의회 의원 (청년특별위원장)</li>
               <li className="flex gap-2 md:gap-3"><span className="text-blue-500/80 mt-1 min-w-[10px]">▪</span>대통령 소속 자치분권위원회 정책자문위원</li>
@@ -442,12 +444,12 @@ export const CosmicMap = () => {
       {/* 3. 지도 노드 / 아이콘 그리드 (Mobile: Grid Layout, Desktop: Map Layout) */}
       <div className={`
         relative z-30 w-full pointer-events-none
-        ${isMobile ? 'px-4 pb-20' : 'flex-grow h-screen'}
+        ${isMobile ? 'px-6 mb-8 order-first mt-8' : 'flex-grow h-screen'}
       `}>
         {/* Container for interactive nodes */}
         <div className={`
           ${isMobile
-            ? 'grid grid-cols-3 gap-3 sm:gap-6 pointer-events-auto w-full'
+            ? 'grid grid-cols-3 gap-4 pointer-events-auto w-full'
             : 'absolute inset-0 pointer-events-auto'
           }
         `}>
@@ -477,7 +479,7 @@ export const CosmicMap = () => {
                   <div
                     className={`
                       relative rounded-full flex items-center justify-center transition-all duration-300
-                      ${isMobile ? 'w-12 h-12 sm:w-16 sm:h-16' : 'w-16 h-16 group-hover:scale-110'}
+                      ${isMobile ? 'w-14 h-14' : 'w-16 h-16 group-hover:scale-110'}
                     `}
                   >
                     {/* Neon Glow Background - Intensified */}
@@ -486,7 +488,7 @@ export const CosmicMap = () => {
 
                     {/* Glassmorphic Circle */}
                     <div className="relative w-full h-full rounded-full bg-black/40 backdrop-blur-md border-[1.5px] border-white/50 flex items-center justify-center shadow-[inset_0_0_15px_rgba(255,255,255,0.4)]">
-                      <IconComponent className={`${isMobile ? 'w-6 h-6 sm:w-8 sm:h-8' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
+                      <IconComponent className={`${isMobile ? 'w-7 h-7' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
                     </div>
 
                     {/* Connecting Line (Decorative - Desktop Only) */}
@@ -494,9 +496,9 @@ export const CosmicMap = () => {
                   </div>
 
                   <span className={`
-                    mt-2 sm:mt-3 font-bold text-white tracking-wide text-center
+                    mt-2 font-bold text-white tracking-wide text-center
                     bg-black/60 rounded-full backdrop-blur-md border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.5)] w-full truncate px-1
-                    ${isMobile ? 'text-[10px] sm:text-xs py-0.5' : 'text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
+                    ${isMobile ? 'text-[11px] py-1' : 'text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
                   `}>
                     {district.name}
                   </span>
@@ -509,7 +511,7 @@ export const CosmicMap = () => {
 
       {/* Mobile Only Social Links (Stacked at Bottom) */}
       {isMobile && (
-        <div className="relative z-40 w-full px-6 pb-12 flex flex-col gap-3">
+        <div className="relative z-40 w-full px-6 pb-20 flex flex-col gap-3">
           {/* Namuwiki Link Button */}
           <motion.a
             href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
