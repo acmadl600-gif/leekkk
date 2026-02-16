@@ -240,9 +240,16 @@ export const CosmicMap = () => {
         style={{ background: 'radial-gradient(circle at 70% 50%, transparent 0%, rgba(2,6,23,0.4) 50%, rgba(2,6,23,0.9) 100%)' }}
       />
 
+      {/* Mobile-Specific Global Dark Overlay for Text Readability */}
+      {isMobile && (
+        <div className="fixed inset-0 z-20 bg-black/50 pointer-events-none" />
+      )}
+
       {/* 2. 상단 브랜딩 영역: Metallic & Neon Typography */}
-      {/* Mobile: Relative flow, Desktop: Fixed position or Absolute if needed (keeping original relative/z-index structure) */}
-      <header className="relative z-50 pt-12 md:pt-16 text-center select-none shrink-0 pointer-events-none px-4 w-full">
+      <header className={`
+        relative z-50 pt-12 text-center select-none shrink-0 pointer-events-none px-4 w-full
+        ${isMobile ? 'order-1 mb-4' : 'md:pt-16'}
+      `}>
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -256,7 +263,7 @@ export const CosmicMap = () => {
         </motion.h1>
       </header>
 
-      {/* 3D Slogan Container - Hybrid Positioning */}
+      {/* 3D Slogan Container */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -264,8 +271,8 @@ export const CosmicMap = () => {
         className={`
            z-40 flex flex-col pointer-events-none
            ${isMobile
-            ? 'relative w-full items-center mt-8 mb-8 px-4' // Mobile: Flow with margin
-            : 'absolute top-8 right-10 items-end' // Desktop: Absolute top-right
+            ? 'relative w-full items-center mb-8 px-4 order-2' // Mobile: Order 2
+            : 'absolute top-8 right-10 items-end'
           }
          `}
       >
@@ -281,7 +288,7 @@ export const CosmicMap = () => {
             </span>
           </h2>
 
-          {/* "1 Trillion Era" - Monumental 3D Focus */}
+          {/* "1 Trillion Era" */}
           <div className={`relative mt-0 md:-mt-1 ${isMobile ? 'w-full flex justify-center' : ''}`}>
             <h2 className={`
                 font-[900] tracking-tighter italic transform -skew-x-6
@@ -301,7 +308,7 @@ export const CosmicMap = () => {
             >
               1조 원 시대
             </h2>
-            {/* Reflection Effect */}
+            {/* Reflection */}
             <h2 className={`
                 absolute top-full w-full font-[900] tracking-tighter italic transform -skew-x-6 scale-y-[-0.3] origin-top opacity-30 select-none pointer-events-none
                 text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-indigo-600
@@ -310,18 +317,17 @@ export const CosmicMap = () => {
             >
               1조 원 시대
             </h2>
-            {/* Energy Core Glow */}
             <div className="absolute inset-0 blur-xl bg-blue-500/20 mix-blend-screen animate-pulse pointer-events-none" />
           </div>
         </div>
       </motion.div>
 
-      {/* 4. 후보자 주요 약력 (Mobile: Flow, Desktop: Fixed Bottom-Left) */}
+      {/* 4. 후보자 주요 약력 */}
       <div className={`
         z-40 transition-all duration-500
         ${isMobile
-          ? 'relative w-full px-6 mb-8 flex flex-col gap-6 items-center order-last' // Mobile: Flow at bottom
-          : 'fixed bottom-10 left-10 flex items-end gap-6' // Desktop: Fixed bottom-left
+          ? 'relative w-full px-4 mb-12 flex flex-col gap-6 items-center order-3' // Mobile: Order 3
+          : 'fixed bottom-10 left-10 flex items-end gap-6'
         }
       `}>
         {/* Candidate History */}
@@ -340,7 +346,7 @@ export const CosmicMap = () => {
           <div className={`
             backdrop-blur-xl rounded-3xl border border-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] w-full
             ${isMobile
-              ? 'bg-gradient-to-br from-black/40 via-blue-900/10 to-transparent p-6'
+              ? 'bg-black/40 p-6 border border-white/10' // Mobile: Darker background for readability
               : 'bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8'
             }
           `}>
@@ -363,10 +369,10 @@ export const CosmicMap = () => {
           </div>
         </motion.div>
 
-        {/* Desktop Only Social Links Wrapper */}
+        {/* Desktop Only Social Links */}
         {!isMobile && (
           <>
-            {/* Namuwiki Link Button */}
+            {/* Namuwiki Link */}
             <motion.a
               href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
               target="_blank"
@@ -390,7 +396,7 @@ export const CosmicMap = () => {
               </div>
             </motion.a>
 
-            {/* Instagram Link Button */}
+            {/* Instagram Link */}
             <motion.a
               href="https://www.instagram.com/namlider123"
               target="_blank"
@@ -414,7 +420,7 @@ export const CosmicMap = () => {
               </div>
             </motion.a>
 
-            {/* Facebook Link Button */}
+            {/* Facebook Link */}
             <motion.a
               href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/"
               target="_blank"
@@ -441,15 +447,14 @@ export const CosmicMap = () => {
         )}
       </div>
 
-      {/* 3. 지도 노드 / 아이콘 그리드 (Mobile: Grid Layout, Desktop: Map Layout) */}
+      {/* 3. 지도 노드 / 아이콘 그리드 */}
       <div className={`
         relative z-30 w-full pointer-events-none
-        ${isMobile ? 'px-6 mb-8 order-first mt-8' : 'flex-grow h-screen'}
+        ${isMobile ? 'px-4 pb-12 order-4' : 'flex-grow h-screen'}
       `}>
-        {/* Container for interactive nodes */}
         <div className={`
           ${isMobile
-            ? 'grid grid-cols-3 gap-4 pointer-events-auto w-full'
+            ? 'grid grid-cols-3 gap-3 pointer-events-auto w-full'
             : 'absolute inset-0 pointer-events-auto'
           }
         `}>
@@ -457,7 +462,7 @@ export const CosmicMap = () => {
             const row = Math.floor(index / 3);
             const col = index % 3;
 
-            // Desktop Positioning Logic
+            // Desktop Positioning
             const top = isMobile ? 'auto' : `calc(15% + (${row} * 11%))`;
             const left = isMobile ? 'auto' : `calc(68% + (${col} * 9%))`;
 
@@ -472,33 +477,38 @@ export const CosmicMap = () => {
                   ${isMobile ? 'relative flex flex-col items-center justify-center w-full' : 'absolute'}
                 `}
                 style={{ top, left }}
-                animate={isMobile ? {} : { y: [0, -8, 0] }} // Disable floating animation on mobile grid for stability
+                animate={isMobile ? {} : { y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1, ease: "easeInOut" }}
               >
-                <div className="flex flex-col items-center w-full">
+                <div className={`
+                  flex flex-col items-center w-full
+                  ${isMobile ? 'bg-black/60 p-3 rounded-2xl border border-white/10 backdrop-blur-sm' : ''} 
+                `}>
+                  {/* ^^ Added bg-black/60 wrapper for mobile icon visibility */}
+
                   <div
                     className={`
                       relative rounded-full flex items-center justify-center transition-all duration-300
-                      ${isMobile ? 'w-14 h-14' : 'w-16 h-16 group-hover:scale-110'}
+                      ${isMobile ? 'w-12 h-12' : 'w-16 h-16 group-hover:scale-110'}
                     `}
                   >
-                    {/* Neon Glow Background - Intensified */}
+                    {/* Neon Glow */}
                     <div className={`absolute inset-0 rounded-full blur-xl opacity-90 bg-gradient-to-r ${district.color} animate-pulse`} />
                     <div className={`absolute -inset-2 rounded-full blur-2xl opacity-40 bg-gradient-to-r ${district.color}`} />
 
                     {/* Glassmorphic Circle */}
                     <div className="relative w-full h-full rounded-full bg-black/40 backdrop-blur-md border-[1.5px] border-white/50 flex items-center justify-center shadow-[inset_0_0_15px_rgba(255,255,255,0.4)]">
-                      <IconComponent className={`${isMobile ? 'w-7 h-7' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
+                      <IconComponent className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} text-white drop-shadow-[0_0_8px_rgba(255,255,255,1)]`} />
                     </div>
 
-                    {/* Connecting Line (Decorative - Desktop Only) */}
                     {!isMobile && <div className="absolute -bottom-8 w-px h-8 bg-gradient-to-b from-white/50 to-transparent -z-10" />}
                   </div>
 
                   <span className={`
                     mt-2 font-bold text-white tracking-wide text-center
-                    bg-black/60 rounded-full backdrop-blur-md border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.5)] w-full truncate px-1
-                    ${isMobile ? 'text-[11px] py-1' : 'text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
+                    ${isMobile
+                      ? 'text-[11px] w-full truncate'
+                      : 'bg-black/60 rounded-full backdrop-blur-md border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.5)] text-xs px-3 py-1 group-hover:bg-blue-600/80 transition-colors'}
                   `}>
                     {district.name}
                   </span>
@@ -509,15 +519,15 @@ export const CosmicMap = () => {
         </div>
       </div>
 
-      {/* Mobile Only Social Links (Stacked at Bottom) */}
+      {/* Mobile Only Social Links */}
       {isMobile && (
-        <div className="relative z-40 w-full px-6 pb-20 flex flex-col gap-3">
-          {/* Namuwiki Link Button */}
+        <div className="relative z-40 w-full px-6 pb-20 flex flex-col gap-3 order-5">
+          {/* Namuwiki Link */}
           <motion.a
             href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 group w-full bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="flex items-center gap-4 group w-full bg-black/50 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-400 via-emerald-500 to-green-600 rounded-full blur opacity-75 animate-pulse"></div>
@@ -533,12 +543,12 @@ export const CosmicMap = () => {
             </div>
           </motion.a>
 
-          {/* Instagram Link Button */}
+          {/* Instagram Link */}
           <motion.a
             href="https://www.instagram.com/namlider123"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 group w-full bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="flex items-center gap-4 group w-full bg-black/50 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full blur opacity-75 animate-pulse"></div>
@@ -554,12 +564,12 @@ export const CosmicMap = () => {
             </div>
           </motion.a>
 
-          {/* Facebook Link Button */}
+          {/* Facebook Link */}
           <motion.a
             href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 group w-full bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="flex items-center gap-4 group w-full bg-black/50 p-3 rounded-2xl border border-white/10 backdrop-blur-md"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 via-blue-600 to-indigo-700 rounded-full blur opacity-75 animate-pulse"></div>
