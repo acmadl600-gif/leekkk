@@ -460,7 +460,7 @@ export const CosmicMap = () => {
               </div>
             )}
 
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-5 w-full px-1">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-3 w-full px-1">
               {districtData.map((district, index) => {
                 return (
                   <motion.div
@@ -495,14 +495,14 @@ export const CosmicMap = () => {
                         ${district.color} border-0
                     `} />
 
-                        <div className="relative z-10 flex flex-col items-center gap-3">
-                          <div className="p-3 bg-white/40 rounded-full shadow-sm backdrop-blur-md ring-1 ring-white/40">
+                        <div className="relative z-10 flex flex-col items-center gap-1.5">
+                          <div className="p-1.5 bg-white/40 rounded-full shadow-sm backdrop-blur-md ring-1 ring-white/40">
                             {React.createElement(district.icon || MapPin, {
-                              className: `w-8 h-8 ${district.text}`,
-                              strokeWidth: 2
+                              className: `w-4 h-4 ${district.text}`,
+                              strokeWidth: 2.5
                             })}
                           </div>
-                          <span className={`text-base font-extrabold ${district.text}`}>{district.name}</span>
+                          <span className={`text-xs font-bold ${district.text}`}>{district.name}</span>
                         </div>
                       </>
                     )}
