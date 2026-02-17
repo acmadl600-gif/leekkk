@@ -370,56 +370,43 @@ export const CosmicMap = () => {
           {/* 7 Core Pledges Grid (Matches Map Grid) */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
             {[
-              { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Smartphone, color: "from-blue-400 to-blue-600", shadow: "shadow-blue-500/80", iconColor: "text-blue-400" },
-              { id: 2, title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "from-cyan-400 to-cyan-600", shadow: "shadow-cyan-500/80", iconColor: "text-cyan-400" },
-              { id: 3, title: "에너지", desc: "에너지 연금 도시", icon: Sun, color: "from-yellow-400 to-yellow-600", shadow: "shadow-yellow-500/80", iconColor: "text-yellow-400" },
-              { id: 4, title: "복지", desc: "제물포 올케어 복지", icon: HeartHandshake, color: "from-red-400 to-red-600", shadow: "shadow-red-500/80", iconColor: "text-red-400" },
-              { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "from-orange-400 to-orange-600", shadow: "shadow-orange-500/80", iconColor: "text-orange-400" },
-              { id: 6, title: "문화", desc: "문화 마법 도시", icon: Sparkles, color: "from-purple-400 to-purple-600", shadow: "shadow-purple-500/80", iconColor: "text-purple-400" },
-              { id: 7, title: "교통", desc: "인천역 KTX & 트램", icon: Train, color: "from-green-400 to-green-600", shadow: "shadow-green-500/80", iconColor: "text-green-400" },
+              { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", emoji: "🤖", keyword: "#AI_민원버스", color: "bg-blue-100 border-blue-300", shadow: "shadow-[0_4px_0_#60a5fa]", text: "text-blue-700" },
+              { id: 2, title: "주권", desc: "디지털 주민 주권 시대", emoji: "🤝", keyword: "#주민주권", color: "bg-cyan-100 border-cyan-300", shadow: "shadow-[0_4px_0_#22d3ee]", text: "text-cyan-700" },
+              { id: 3, title: "에너지", desc: "에너지 연금 도시", emoji: "☀️", keyword: "#에너지연금", color: "bg-yellow-100 border-yellow-300", shadow: "shadow-[0_4px_0_#facc15]", text: "text-yellow-700" },
+              { id: 4, title: "복지", desc: "제물포 올케어 복지", emoji: "🧸", keyword: "#올케어복지", color: "bg-pink-100 border-pink-300", shadow: "shadow-[0_4px_0_#f472b6]", text: "text-pink-700" },
+              { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", emoji: "🍱", keyword: "#K-푸드", color: "bg-orange-100 border-orange-300", shadow: "shadow-[0_4px_0_#fb923c]", text: "text-orange-700" },
+              { id: 6, title: "문화", desc: "문화 마법 도시", emoji: "✨", keyword: "#문화마법", color: "bg-purple-100 border-purple-300", shadow: "shadow-[0_4px_0_#c084fc]", text: "text-purple-700" },
+              { id: 7, title: "교통", desc: "인천역 KTX & 트램", emoji: "🚄", keyword: "#KTX트램", color: "bg-green-100 border-green-300", shadow: "shadow-[0_4px_0_#4ade80]", text: "text-green-700" },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                whileTap={{ scale: 0.9, rotate: idx % 2 === 0 ? -3 : 3 }}
+                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 300, damping: 20, delay: idx * 0.1 }}
                 className={`
                   relative flex flex-col items-center justify-center aspect-square 
-                  bg-gradient-to-b from-white/10 to-transparent 
-                  backdrop-blur-sm rounded-2xl 
-                  border border-white/20 
-                  shadow-[0_0_20px_rgba(255,255,255,0.3)] ${item.shadow}
-                  hover:scale-105 active:scale-95 
-                  hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-none
-                  transition-all duration-200 ease-out
+                  ${item.color} border-2 
+                  rounded-3xl 
+                  ${item.shadow}
                   ${idx === 6 ? 'col-span-2 w-1/2 mx-auto sm:col-span-1 sm:w-full sm:col-start-2' : ''}
                 `}
-                animate={{
-                  boxShadow: [
-                    `0 0 20px ${item.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`,
-                    `0 0 40px ${item.color.includes('orange') ? 'rgba(249, 115, 22, 0.8)' : 'rgba(59, 130, 246, 0.8)'}`,
-                    `0 0 20px ${item.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`
-                  ]
-                }}
-                transition={{
-                  delay: idx * 0.1,
-                  boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                }}
               >
-                {/* Inner Gradient */}
-                <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${item.color}`} />
-
-                {/* Arrow Icon */}
-                <div className="absolute bottom-2 right-2 opacity-50 text-white">
-                  <ArrowRight className="w-4 h-4" />
+                {/* 3D Emoji Icon with Bounce */}
+                <div className="text-4xl drop-shadow-md mb-2 animate-bounce hover:scale-110 transition-transform cursor-pointer">
+                  {item.emoji}
                 </div>
 
-                <div className="relative flex flex-col items-center scale-100">
-                  <div className="flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)] w-12 h-12 bg-black/10 mb-2 ring-1 ring-white/40 backdrop-brightness-125">
-                    <item.icon className={`w-7 h-7 ${item.iconColor} drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]`} />
-                  </div>
-                  <span className="font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-xs px-0.5 text-center whitespace-normal break-keep leading-3 tracking-tighter">
-                    {item.title}
+                {/* Title */}
+                <span className={`font-black ${item.text} text-sm mb-1.5 drop-shadow-sm`}>
+                  {item.title}
+                </span>
+
+                {/* Keyword Bubble */}
+                <div className="bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/50 shadow-sm">
+                  <span className={`text-[10px] font-extrabold ${item.text} tracking-tight`}>
+                    {item.keyword}
                   </span>
                 </div>
               </motion.div>
