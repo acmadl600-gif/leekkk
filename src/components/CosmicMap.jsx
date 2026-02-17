@@ -16,8 +16,7 @@ const districtData = [
     promise: "청년 공공안심상가 및 K-푸드 스마트 허브 연계",
     features: ["전통시장 내 청년 안심상가 조성", "제물포 코인(지역화폐) 캐시백 15%", "글로벌 관광 클러스터 특화"],
     icon: Utensils,
-    color: "from-orange-500 to-red-600",
-    shadow: "shadow-orange-500/50"
+    emoji: "🐟", keyword: "#K-푸드", color: "bg-orange-100 border-orange-300", text: "text-orange-700", shadow: "shadow-[0_4px_0_#fdba74]"
   },
   {
     id: 2,
@@ -25,8 +24,7 @@ const districtData = [
     promise: "K-푸드 스마트 허브 구축 및 인천지하철 3호선 연안부두역 신설",
     features: ["스마트 콜드체인 물류 허브 도입", "해양특화 경제자유구역 지정 추진", "인천 3호선(순환선) 조기 착공"],
     icon: Anchor,
-    color: "from-cyan-400 to-blue-600",
-    shadow: "shadow-cyan-500/50"
+    emoji: "🚢", keyword: "#연안부두", color: "bg-blue-100 border-blue-300", text: "text-blue-700", shadow: "shadow-[0_4px_0_#60a5fa]"
   },
   {
     id: 3,
@@ -34,8 +32,7 @@ const districtData = [
     promise: "빈 점포 활용 예술가 레지던시 및 맞춤형 헬스케어 확대",
     features: ["문화예술 창작촌(레지던시) 조성", "마음건강 119 의료 안전망 가동", "노후 주거 환경 '안심 家' 정비"],
     icon: HeartPulse,
-    color: "from-pink-500 to-rose-600",
-    shadow: "shadow-pink-500/50"
+    emoji: "🎨", keyword: "#예술가", color: "bg-pink-100 border-pink-300", text: "text-pink-700", shadow: "shadow-[0_4px_0_#f472b6]"
   },
   {
     id: 4,
@@ -43,8 +40,7 @@ const districtData = [
     promise: "역세권 청년 주거 혁신 및 원스톱 통합 돌봄 플랫폼 구축",
     features: ["역세권 청년 올인원 주거 타운", "늘봄학교 연계 틈새 돌봄 강화", "제물포 AI 민원 버스 정기 순회"],
     icon: Home,
-    color: "from-emerald-400 to-teal-600",
-    shadow: "shadow-emerald-500/50"
+    emoji: "🏡", keyword: "#청년주거", color: "bg-emerald-100 border-emerald-300", text: "text-emerald-700", shadow: "shadow-[0_4px_0_#34d399]"
   },
   {
     id: 5,
@@ -52,8 +48,7 @@ const districtData = [
     promise: "주민 향유형 문화 거점(구민청) 조성 및 숲속 도서관 건립",
     features: ["권역별 제물포 구민청(세대공감) 조성", "율목공원 숲속 도서관 건립", "어르신 스마트 헬스케어 경로당"],
     icon: BookOpen,
-    color: "from-green-400 to-green-700",
-    shadow: "shadow-green-500/50"
+    emoji: "📚", keyword: "#숲속도서관", color: "bg-green-100 border-green-300", text: "text-green-700", shadow: "shadow-[0_4px_0_#4ade80]"
   },
   {
     id: 6,
@@ -61,8 +56,7 @@ const districtData = [
     promise: "동인천역 북광장 랜드마크화 및 문화야시장 브랜드화",
     features: ["북광장 복합 랜드마크 개발", "제물포 '골든위크' 문화야시장", "상권 르네네상스 프로젝트 가동"],
     icon: Star,
-    color: "from-violet-500 to-purple-700",
-    shadow: "shadow-violet-500/50"
+    emoji: "🌟", keyword: "#랜드마크", color: "bg-purple-100 border-purple-300", text: "text-purple-700", shadow: "shadow-[0_4px_0_#c084fc]"
   },
   {
     id: 7,
@@ -70,8 +64,7 @@ const districtData = [
     promise: "인천역 KTX 시대 개막 및 제물포 웨이(We-sharing) 관광 거점",
     features: ["인천역 KTX 시점 연장 추진", "근대 문화유산 디지털 트윈 복원", "제물포형 로컬 크리에이터 육성"],
     icon: Landmark,
-    color: "from-amber-300 to-yellow-600",
-    shadow: "shadow-amber-500/50"
+    emoji: "🏛️", keyword: "#KTX인천역", color: "bg-amber-100 border-amber-300", text: "text-amber-700", shadow: "shadow-[0_4px_0_#fbbf24]"
   },
   {
     id: 8,
@@ -79,8 +72,7 @@ const districtData = [
     promise: "산학융합 테크노-벨트 조성 및 동일방직 부지 문화 재생",
     features: ["기회발전특구 지정(세제 혜택)", "동일방직 부지 복합 문화공간화", "뿌리산업 AI 기술 고도화 지원"],
     icon: Factory,
-    color: "from-slate-400 to-slate-600",
-    shadow: "shadow-slate-500/50"
+    emoji: "🏭", keyword: "#테크노벨트", color: "bg-slate-100 border-slate-300", text: "text-slate-700", shadow: "shadow-[0_4px_0_#94a3b8]"
   },
   {
     id: 9,
@@ -88,8 +80,7 @@ const districtData = [
     promise: "문화예술 창작촌(레지던시) 조성 및 노후 주거 쾌적화",
     features: ["빈집 활용 예술가 레지던시 공급", "노후 주택 낙상 예방 집수리", "주민 주도 마을 관리소 운영"],
     icon: Palette,
-    color: "from-fuchsia-400 to-purple-600",
-    shadow: "shadow-fuchsia-500/50"
+    emoji: "🖌️", keyword: "#문화창작", color: "bg-fuchsia-100 border-fuchsia-300", text: "text-fuchsia-700", shadow: "shadow-[0_4px_0_#e879f9]"
   },
   {
     id: 10,
@@ -97,8 +88,7 @@ const districtData = [
     promise: "기회발전특구 지정 추진 및 첨단 뿌리산업 클러스터 조성",
     features: ["산학융합 '마이크로 팩토리' 유치", "제물포 구민청(문화혁신) 조성", "일자리 연계형 청년 주택 공급"],
     icon: Cpu,
-    color: "from-indigo-400 to-blue-600",
-    shadow: "shadow-indigo-500/50"
+    emoji: "💾", keyword: "#첨단산업", color: "bg-indigo-100 border-indigo-300", text: "text-indigo-700", shadow: "shadow-[0_4px_0_#818cf8]"
   },
   {
     id: 11,
@@ -106,8 +96,7 @@ const districtData = [
     promise: "전통시장 현대화 및 청년 창업 '공공안심상가' 지원",
     features: ["중앙시장 청년 공공안심상가", "시장 연계 문화 관광 상품 개발", "보행자 중심 '걷고 싶은 거리'"],
     icon: ShoppingBag,
-    color: "from-orange-400 to-red-500",
-    shadow: "shadow-orange-500/50"
+    emoji: "🛍️", keyword: "#전통시장", color: "bg-red-100 border-red-300", text: "text-red-700", shadow: "shadow-[0_4px_0_#f87171]"
   },
   {
     id: 12,
@@ -115,8 +104,7 @@ const districtData = [
     promise: "산업단지 대개조 및 친환경 녹색 일자리 창출",
     features: ["산업단지 주변 녹지 완충 조성", "햇빛발전협동조합 '에너지 연금'", "친환경 그린 일자리 500개 확보"],
     icon: Trees,
-    color: "from-lime-400 to-green-600",
-    shadow: "shadow-lime-500/50"
+    emoji: "🌳", keyword: "#녹색일자리", color: "bg-lime-100 border-lime-300", text: "text-lime-700", shadow: "shadow-[0_4px_0_#a3e635]"
   },
   {
     id: 13,
@@ -124,8 +112,7 @@ const districtData = [
     promise: "신속한 재개발 추진 및 정주 여건 대폭 개선",
     features: ["재개발 사업 신속 행정 지원", "무인 방범 시스템 CCTV 확충", "쓰레기 무단 투기 제로화"],
     icon: HardHat,
-    color: "from-teal-400 to-cyan-600",
-    shadow: "shadow-teal-500/50"
+    emoji: "🏗️", keyword: "#재개발", color: "bg-teal-100 border-teal-300", text: "text-teal-700", shadow: "shadow-[0_4px_0_#2dd4bf]"
   },
   {
     id: 14,
@@ -133,8 +120,7 @@ const districtData = [
     promise: "어르신 '안심 家' 집수리 지원 및 통합 돌봄 센터 확충",
     features: ["낙상 예방 고령친화 집수리", "다함께돌봄센터 확충", "찾아가는 AI 이동 보건소"],
     icon: HandHeart,
-    color: "from-rose-300 to-pink-500",
-    shadow: "shadow-rose-500/50"
+    emoji: "❤️", keyword: "#어르신돌봄", color: "bg-rose-100 border-rose-300", text: "text-rose-700", shadow: "shadow-[0_4px_0_#fb7185]"
   },
   {
     id: 15,
@@ -142,8 +128,7 @@ const districtData = [
     promise: "아동·청소년 안전 통학로 조성 및 교육 특화 거리 육성",
     features: ["스마트 횡단보도 및 안심 통학로", "청소년 진로 체험 '잡 월드' 연계", "마을 도서관 활성화 프로그램"],
     icon: School,
-    color: "from-sky-400 to-blue-500",
-    shadow: "shadow-sky-500/50"
+    emoji: "🏫", keyword: "#안심통학로", color: "bg-sky-100 border-sky-300", text: "text-sky-700", shadow: "shadow-[0_4px_0_#38bdf8]"
   },
   {
     id: 16,
@@ -151,8 +136,7 @@ const districtData = [
     promise: "송림플라자 '청년 올인원 센터' 및 행정타운 조성",
     features: ["송림플라자 리모델링(청년 창업/주거)", "제물포 행정타운 연계 상권 활성화", "대학 연계 AI 교육 특구 유치"],
     icon: Building2,
-    color: "from-blue-500 to-indigo-700",
-    shadow: "shadow-blue-500/50"
+    emoji: "🏢", keyword: "#송림플라자", color: "bg-cyan-100 border-cyan-300", text: "text-cyan-700", shadow: "shadow-[0_4px_0_#22d3ee]"
   },
   {
     id: 17,
@@ -160,8 +144,7 @@ const districtData = [
     promise: "소상공인 경영안정수당 지급 및 골목상권 활성화",
     features: ["소상공인 경영안정 자금 지원", "골목상권 '브랜드 페스타' 개최", "상가 앞 주차 허용 구간 탄력 운영"],
     icon: Coins,
-    color: "from-yellow-400 to-amber-500",
-    shadow: "shadow-yellow-500/50"
+    emoji: "💰", keyword: "#골목상권", color: "bg-yellow-100 border-yellow-300", text: "text-yellow-700", shadow: "shadow-[0_4px_0_#facc15]"
   },
   {
     id: 18,
@@ -169,8 +152,7 @@ const districtData = [
     promise: "배다리 역사문화 거리 명소화 및 로컬 크리에이터 육성",
     features: ["배다리 책방 거리 '지식 플랫폼'화", "로컬 크리에이터 100인 육성", "근대 역사 문화 탐방로 조성"],
     icon: Book,
-    color: "from-amber-600 to-orange-800",
-    shadow: "shadow-amber-600/50"
+    emoji: "📖", keyword: "#배다리", color: "bg-amber-100 border-amber-300", text: "text-amber-700", shadow: "shadow-[0_4px_0_#fbbf24]"
   }
 ];
 
@@ -447,7 +429,7 @@ export const CosmicMap = () => {
           </div>
         )}
 
-        <div className={`${isMobile ? 'grid grid-cols-2 sm:grid-cols-3 gap-3 w-full' : 'absolute inset-0 pointer-events-auto'}`}>
+        <div className={`${isMobile ? 'grid grid-cols-3 gap-2 w-full px-1' : 'absolute inset-0 pointer-events-auto'}`}>
           {districtData.map((district, index) => {
             const row = Math.floor(index / 3);
             const col = index % 3;
@@ -459,53 +441,48 @@ export const CosmicMap = () => {
               <motion.div
                 key={district.id}
                 onClick={() => setSelectedId(district.id)}
+                whileTap={isMobile ? { scale: 0.9, rotate: index % 2 === 0 ? -3 : 3 } : {}}
                 className={`
                     cursor-pointer group
                     ${isMobile
                     ? `relative flex flex-col items-center justify-center aspect-square 
-                       bg-gradient-to-b from-white/10 to-transparent 
-                       backdrop-blur-sm rounded-2xl 
-                       border border-white/20 
-                       shadow-[0_0_20px_rgba(255,255,255,0.3)] ${district.shadow.replace('/50', '/80')}
-                       hover:scale-105 active:scale-95 
-                       hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-none
-                       transition-all duration-200 ease-out`
+                       ${district.color} border-2 
+                       rounded-2xl 
+                       ${district.shadow}
+                       transition-all duration-150`
                     : 'absolute'
                   }
                   `}
                 style={{ top, left }}
-                animate={isMobile ? {
-                  boxShadow: [
-                    `0 0 20px ${district.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`,
-                    `0 0 40px ${district.color.includes('orange') ? 'rgba(249, 115, 22, 0.8)' : 'rgba(59, 130, 246, 0.8)'}`,
-                    `0 0 20px ${district.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`
-                  ]
-                } : { y: [0, -8, 0] }}
-                transition={isMobile ? {
-                  boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                } : { repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
+                initial={isMobile ? { opacity: 0, scale: 0.5 } : {}}
+                whileInView={isMobile ? { opacity: 1, scale: 1 } : {}}
+                transition={isMobile ? { type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 } : { repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
+                animate={!isMobile ? { y: [0, -8, 0] } : {}}
               >
-                {/* Mobile Specific Inner Design */}
-                {isMobile && <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${district.color}`} />}
-
-                {/* Arrow Icon for Affordance */}
-                {isMobile && (
-                  <div className="absolute bottom-2 right-2 opacity-50 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                {isMobile ? (
+                  <>
+                    <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow">
+                      {district.emoji}
+                    </div>
+                    <span className={`font-black ${district.text} text-[11px] mb-0.5 leading-tight text-center break-keep`}>
+                      {district.name}
+                    </span>
+                    <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
+                      <span className={`text-[9px] font-bold ${district.text} tracking-tighter`}>
+                        {district.keyword}
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="relative flex flex-col items-center scale-100">
+                    <div className="flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)] w-16 h-16 bg-black/40 border border-white/50">
+                      <IconComponent className="w-8 h-8 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]" />
+                    </div>
+                    <span className="mt-2 text-xs bg-black/60 px-2 py-1 rounded-full font-bold text-white">
+                      {district.name}
+                    </span>
                   </div>
                 )}
-
-                <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
-                  <div className={`
-                        flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]
-                        ${isMobile ? 'w-12 h-12 bg-black/10 mb-2 ring-1 ring-white/40 backdrop-brightness-125' : 'w-16 h-16 bg-black/40 border border-white/50'}
-                      `}>
-                    <IconComponent className={`${isMobile ? 'w-7 h-7' : 'w-8 h-8'} text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]`} />
-                  </div>
-                  <span className={`font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] ${isMobile ? 'text-xs px-0.5 text-center whitespace-normal break-keep leading-3 tracking-tighter' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
-                    {district.name}
-                  </span>
-                </div>
               </motion.div>
             )
           })}
