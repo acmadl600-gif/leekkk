@@ -323,6 +323,21 @@ export const CosmicMap = () => {
               </li>
             ))}
           </ul>
+
+          {/* Pledge Book Download Button */}
+          <a
+            href="/promise.pdf.pdf"
+            download="남궁형_공약집.pdf"
+            className={`
+              mt-6 flex items-center justify-center gap-2 w-full py-3 rounded-xl
+              bg-blue-600/90 hover:bg-blue-500 text-white font-bold
+              border border-white/20 shadow-lg active:scale-95 transition-all
+              ${isMobile ? 'text-sm' : 'text-base'}
+            `}
+          >
+            <BookOpen className="w-5 h-5" />
+            남궁형 공약집 다운로드
+          </a>
         </motion.div>
 
         {/* Desktop Socials */}
