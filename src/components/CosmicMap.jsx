@@ -364,9 +364,9 @@ export const CosmicMap = () => {
                        bg-gradient-to-b from-white/15 to-transparent 
                        backdrop-blur-xl rounded-2xl 
                        border border-white/20 
-                       shadow-[0_0_15px_rgba(0,0,0,0.5)] ${district.shadow}
+                       shadow-[0_0_20px_rgba(255,255,255,0.3)] ${district.shadow.replace('/50', '/80')}
                        hover:scale-105 active:scale-105 
-                       hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] active:shadow-[0_0_40px_rgba(255,255,255,0.6)]
+                       hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-[0_0_50px_rgba(255,255,255,0.8)]
                        transition-all duration-300 ease-out
                        overflow-hidden`
                     : 'absolute'
@@ -377,16 +377,16 @@ export const CosmicMap = () => {
                 transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
               >
                 {/* Mobile Specific Inner Design */}
-                {isMobile && <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${district.color}`} />}
+                {isMobile && <div className={`absolute inset-0 opacity-30 bg-gradient-to-br ${district.color}`} />}
 
                 <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
                   <div className={`
-                        flex items-center justify-center rounded-full shadow-inner
-                        ${isMobile ? 'w-12 h-12 bg-black/30 mb-2 ring-1 ring-white/20' : 'w-16 h-16 bg-black/40 border border-white/50'}
+                        flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]
+                        ${isMobile ? 'w-12 h-12 bg-black/20 mb-2 ring-1 ring-white/40 backdrop-brightness-150' : 'w-16 h-16 bg-black/40 border border-white/50'}
                       `}>
-                    <IconComponent className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]`} />
+                    <IconComponent className={`${isMobile ? 'w-7 h-7' : 'w-8 h-8'} text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]`} />
                   </div>
-                  <span className={`font-bold text-white drop-shadow-md ${isMobile ? 'text-[11px] px-2 text-center whitespace-normal break-keep leading-tight' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
+                  <span className={`font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] ${isMobile ? 'text-[13px] px-1 text-center whitespace-normal break-keep leading-tight tracking-tight' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
                     {district.name}
                   </span>
                 </div>
