@@ -419,10 +419,15 @@ export const CosmicMap = () => {
       {/* 5. Policy Map Section - GRID STYLE */}
       <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
         {isMobile && (
-          <div className="mb-6 flex items-center gap-4">
-            <div className="h-px bg-white/20 flex-1" />
-            <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">우리 동네 공약</h3>
-            <div className="h-px bg-white/20 flex-1" />
+          <div className="mb-6 flex flex-col items-center gap-1">
+            <div className="flex items-center gap-4 w-full">
+              <div className="h-px bg-white/20 flex-1" />
+              <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">우리 동네 공약</h3>
+              <div className="h-px bg-white/20 flex-1" />
+            </div>
+            <p className="text-xs text-blue-300/80 animate-pulse">
+              동네 아이콘을 클릭하면 상세 공약이 나타납니다
+            </p>
           </div>
         )}
 
@@ -446,19 +451,34 @@ export const CosmicMap = () => {
                        backdrop-blur-sm rounded-2xl 
                        border border-white/20 
                        shadow-[0_0_20px_rgba(255,255,255,0.3)] ${district.shadow.replace('/50', '/80')}
-                       hover:scale-105 active:scale-105 
-                       hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-[0_0_50px_rgba(255,255,255,0.8)]
-                       transition-all duration-300 ease-out
+                       hover:scale-105 active:scale-95 
+                       hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-none
+                       transition-all duration-200 ease-out
                        overflow-hidden`
                     : 'absolute'
                   }
                   `}
                 style={{ top, left }}
-                animate={isMobile ? {} : { y: [0, -8, 0] }}
-                transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
+                animate={isMobile ? {
+                  boxShadow: [
+                    `0 0 20px ${district.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`,
+                    `0 0 40px ${district.color.includes('orange') ? 'rgba(249, 115, 22, 0.8)' : 'rgba(59, 130, 246, 0.8)'}`,
+                    `0 0 20px ${district.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`
+                  ]
+                } : { y: [0, -8, 0] }}
+                transition={isMobile ? {
+                  boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                } : { repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
               >
                 {/* Mobile Specific Inner Design */}
                 {isMobile && <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${district.color}`} />}
+
+                {/* Arrow Icon for Affordance */}
+                {isMobile && (
+                  <div className="absolute bottom-2 right-2 opacity-50 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                  </div>
+                )}
 
                 <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
                   <div className={`
