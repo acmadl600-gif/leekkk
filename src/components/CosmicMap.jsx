@@ -350,6 +350,72 @@ export const CosmicMap = () => {
         )}
       </div>
 
+      {/* 4.5 Core Pledges Section (Mobile Only) */}
+      {isMobile && (
+        <div className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-6"
+          >
+            <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+              하나 된 제물포,<br />1조 원 시대의 개막!
+            </h3>
+          </motion.div>
+
+          {/* 7 Core Pledges Grid */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {[
+              { title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Building2, color: "text-blue-400" },
+              { title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "text-cyan-400" },
+              { title: "에너지", desc: "에너지 연금 도시", icon: Zap, color: "text-yellow-400" },
+              { title: "복지", desc: "제물포 올케어(All-Care) 복지", icon: HeartPulse, color: "text-red-400" },
+              { title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "text-orange-400" },
+              { title: "문화", desc: "문화 마법 도시", icon: Star, color: "text-purple-400" },
+              { title: "교통", desc: "인천역 KTX & 트램 교통혁명", icon: Factory, color: "text-green-400" },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className={`
+                  relative flex flex-col items-center justify-center p-4 rounded-2xl
+                  bg-white/5 backdrop-blur-md border border-white/10
+                  shadow-[0_0_15px_rgba(0,0,0,0.3)]
+                  ${idx === 6 ? 'col-span-2' : ''}
+                `}
+              >
+                <item.icon className={`w-8 h-8 mb-2 ${item.color} drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]`} />
+                <h4 className="text-lg font-bold text-white mb-1">{item.title}</h4>
+                <p className="text-xs text-slate-300 text-center break-keep">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Detailed PDF Button */}
+          <a
+            href="/promise.pdf.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              flex items-center justify-center gap-2 w-full py-4 rounded-xl
+              bg-gradient-to-r from-blue-600 to-cyan-600
+              hover:from-blue-500 hover:to-cyan-500
+              text-white font-bold text-base
+              border border-white/20 shadow-[0_0_20px_rgba(37,99,235,0.4)]
+              active:scale-95 transition-all
+            "
+          >
+            <BookOpen className="w-5 h-5" />
+            남궁형의 1조 원 시대 상세 공약집 보기
+          </a>
+        </div>
+      )}
+
       {/* 5. Policy Map Section - GRID STYLE */}
       <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
         {isMobile && (
