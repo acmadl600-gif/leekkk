@@ -453,8 +453,7 @@ export const CosmicMap = () => {
                        shadow-[0_0_20px_rgba(255,255,255,0.3)] ${district.shadow.replace('/50', '/80')}
                        hover:scale-105 active:scale-95 
                        hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-none
-                       transition-all duration-200 ease-out
-                       overflow-hidden`
+                       transition-all duration-200 ease-out`
                     : 'absolute'
                   }
                   `}
@@ -487,7 +486,7 @@ export const CosmicMap = () => {
                       `}>
                     <IconComponent className={`${isMobile ? 'w-7 h-7' : 'w-8 h-8'} text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]`} />
                   </div>
-                  <span className={`font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] ${isMobile ? 'text-[13px] px-1 text-center whitespace-normal break-keep leading-tight tracking-tight' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
+                  <span className={`font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] ${isMobile ? 'text-xs px-0.5 text-center whitespace-normal break-keep leading-3 tracking-tighter' : 'mt-2 text-xs bg-black/60 px-2 py-1 rounded-full'}`}>
                     {district.name}
                   </span>
                 </div>
