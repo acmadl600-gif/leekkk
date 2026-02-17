@@ -206,24 +206,25 @@ export const CosmicMap = () => {
 
       {/* 2. Mobile App-Style Header (New) */}
       {isMobile && (
-        <div className="fixed top-0 left-0 right-0 z-[60] bg-black/60 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-between items-center shadow-lg">
-          <span className="text-lg font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-            NAMGUNG HYUNG
-          </span>
-          <div className="flex gap-2">
-            <button
-              onClick={() => document.getElementById('section-profile')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-              className="px-3 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all"
-            >
-              프로필
-            </button>
-            <button
-              onClick={() => document.getElementById('section-map')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              className="px-3 py-1.5 text-xs font-bold bg-blue-600/80 rounded-full border border-blue-400/30 shadow-[0_0_10px_rgba(37,99,235,0.4)] active:scale-95 transition-all"
-            >
-              공약지도
-            </button>
-          </div>
+        <div className="fixed top-0 left-0 right-0 z-[60] bg-black/60 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-center items-center gap-2 shadow-lg">
+          <button
+            onClick={() => document.getElementById('section-profile')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+            className="px-4 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all text-white"
+          >
+            프로필
+          </button>
+          <button
+            onClick={() => document.getElementById('section-pledges')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+            className="px-4 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all text-white"
+          >
+            7대공약
+          </button>
+          <button
+            onClick={() => document.getElementById('section-map')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            className="px-4 py-1.5 text-xs font-bold bg-blue-600/80 rounded-full border border-blue-400/30 shadow-[0_0_10px_rgba(37,99,235,0.4)] active:scale-95 transition-all text-white"
+          >
+            공약지도
+          </button>
         </div>
       )}
 
@@ -350,61 +351,88 @@ export const CosmicMap = () => {
         )}
       </div>
 
-      {/* 4.5 Core Pledges Section (Mobile Only) */}
+      {/* 4.5 Core Pledges Section - Native Design */}
       {isMobile && (
-        <div className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
-          {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-6"
-          >
-            <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
-              하나 된 제물포,<br />1조 원 시대의 개막!
-            </h3>
-          </motion.div>
+        <div id="section-pledges" className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
+          {/* Section Title (Matches Map Section) */}
+          <div className="mb-6 flex flex-col items-center gap-1">
+            <div className="flex items-center gap-4 w-full">
+              <div className="h-px bg-white/20 flex-1" />
+              <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">7대 핵심 공약</h3>
+              <div className="h-px bg-white/20 flex-1" />
+            </div>
+            <p className="text-xs text-blue-300/80 animate-pulse">
+              아이콘을 클릭하면 상세 내용을 볼 수 있습니다
+            </p>
+          </div>
 
-          {/* 7 Core Pledges Grid */}
-          <div className="grid grid-cols-2 gap-3 mb-6">
+          {/* 7 Core Pledges Grid (Matches Map Grid) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
             {[
-              { title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Building2, color: "text-blue-400" },
-              { title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "text-cyan-400" },
-              { title: "에너지", desc: "에너지 연금 도시", icon: Zap, color: "text-yellow-400" },
-              { title: "복지", desc: "제물포 올케어(All-Care) 복지", icon: HeartPulse, color: "text-red-400" },
-              { title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "text-orange-400" },
-              { title: "문화", desc: "문화 마법 도시", icon: Star, color: "text-purple-400" },
-              { title: "교통", desc: "인천역 KTX & 트램 교통혁명", icon: Factory, color: "text-green-400" },
+              { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Smartphone, color: "from-blue-400 to-blue-600", shadow: "shadow-blue-500/80" },
+              { id: 2, title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "from-cyan-400 to-cyan-600", shadow: "shadow-cyan-500/80" },
+              { id: 3, title: "에너지", desc: "에너지 연금 도시", icon: Sun, color: "from-yellow-400 to-yellow-600", shadow: "shadow-yellow-500/80" },
+              { id: 4, title: "복지", desc: "제물포 올케어 복지", icon: HeartHandshake, color: "from-red-400 to-red-600", shadow: "shadow-red-500/80" },
+              { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "from-orange-400 to-orange-600", shadow: "shadow-orange-500/80" },
+              { id: 6, title: "문화", desc: "문화 마법 도시", icon: Sparkles, color: "from-purple-400 to-purple-600", shadow: "shadow-purple-500/80" },
+              { id: 7, title: "교통", desc: "인천역 KTX & 트램", icon: Train, color: "from-green-400 to-green-600", shadow: "shadow-green-500/80" },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
                 className={`
-                  relative flex flex-col items-center justify-center p-4 rounded-2xl
-                  bg-white/5 backdrop-blur-md border border-white/10
-                  shadow-[0_0_15px_rgba(0,0,0,0.3)]
-                  ${idx === 6 ? 'col-span-2' : ''}
+                  relative flex flex-col items-center justify-center aspect-square 
+                  bg-gradient-to-b from-white/10 to-transparent 
+                  backdrop-blur-sm rounded-2xl 
+                  border border-white/20 
+                  shadow-[0_0_20px_rgba(255,255,255,0.3)] ${item.shadow}
+                  hover:scale-105 active:scale-95 
+                  hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-none
+                  transition-all duration-200 ease-out
+                  ${idx === 6 ? 'col-span-2 sm:col-span-1 sm:col-start-2' : ''}
                 `}
+                animate={{
+                  boxShadow: [
+                    `0 0 20px ${item.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`,
+                    `0 0 40px ${item.color.includes('orange') ? 'rgba(249, 115, 22, 0.8)' : 'rgba(59, 130, 246, 0.8)'}`,
+                    `0 0 20px ${item.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(59, 130, 246, 0.5)'}`
+                  ]
+                }}
+                transition={{
+                  delay: idx * 0.1,
+                  boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                }}
               >
-                <item.icon className={`w-8 h-8 mb-2 ${item.color} drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]`} />
-                <h4 className="text-lg font-bold text-white mb-1">{item.title}</h4>
-                <p className="text-xs text-slate-300 text-center break-keep">{item.desc}</p>
+                {/* Inner Gradient */}
+                <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${item.color}`} />
+
+                {/* Arrow Icon */}
+                <div className="absolute bottom-2 right-2 opacity-50 text-white">
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+
+                <div className="relative flex flex-col items-center scale-100">
+                  <div className="flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)] w-12 h-12 bg-black/10 mb-2 ring-1 ring-white/40 backdrop-brightness-125">
+                    <item.icon className="w-7 h-7 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]" />
+                  </div>
+                  <span className="font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-xs px-0.5 text-center whitespace-normal break-keep leading-3 tracking-tighter">
+                    {item.title}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Detailed PDF Button */}
+          {/* Detailed PDF Button - Keep large button but native style */}
           <a
             href="/promise.pdf.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="
               flex items-center justify-center gap-2 w-full py-4 rounded-xl
-              bg-gradient-to-r from-blue-600 to-cyan-600
-              hover:from-blue-500 hover:to-cyan-500
+              bg-blue-600/90 hover:bg-blue-500 
               text-white font-bold text-base
               border border-white/20 shadow-[0_0_20px_rgba(37,99,235,0.4)]
               active:scale-95 transition-all
