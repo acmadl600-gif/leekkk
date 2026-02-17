@@ -295,7 +295,7 @@ export const CosmicMap = () => {
           className={`
             text-left
             ${isMobile
-              ? 'w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-xl'
+              ? 'w-full bg-black/20 backdrop-blur-sm border border-white/20 rounded-3xl p-6 shadow-xl'
               : 'w-full max-w-xl bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8 backdrop-blur-xl rounded-3xl border border-white/5'
             }
           `}
