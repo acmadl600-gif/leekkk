@@ -361,8 +361,8 @@ export const CosmicMap = () => {
                     cursor-pointer group
                     ${isMobile
                     ? `relative flex flex-col items-center justify-center aspect-square 
-                       bg-gradient-to-b from-white/15 to-transparent 
-                       backdrop-blur-xl rounded-2xl 
+                       bg-gradient-to-b from-white/10 to-transparent 
+                       backdrop-blur-sm rounded-2xl 
                        border border-white/20 
                        shadow-[0_0_20px_rgba(255,255,255,0.3)] ${district.shadow.replace('/50', '/80')}
                        hover:scale-105 active:scale-105 
@@ -377,12 +377,12 @@ export const CosmicMap = () => {
                 transition={{ repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
               >
                 {/* Mobile Specific Inner Design */}
-                {isMobile && <div className={`absolute inset-0 opacity-30 bg-gradient-to-br ${district.color}`} />}
+                {isMobile && <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${district.color}`} />}
 
                 <div className={`relative flex flex-col items-center ${isMobile ? 'scale-100' : 'scale-100'}`}>
                   <div className={`
                         flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]
-                        ${isMobile ? 'w-12 h-12 bg-black/20 mb-2 ring-1 ring-white/40 backdrop-brightness-150' : 'w-16 h-16 bg-black/40 border border-white/50'}
+                        ${isMobile ? 'w-12 h-12 bg-black/10 mb-2 ring-1 ring-white/40 backdrop-brightness-125' : 'w-16 h-16 bg-black/40 border border-white/50'}
                       `}>
                     <IconComponent className={`${isMobile ? 'w-7 h-7' : 'w-8 h-8'} text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]`} />
                   </div>
