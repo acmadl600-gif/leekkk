@@ -178,7 +178,7 @@ export const CosmicMap = () => {
     <div className="
       relative w-full bg-[#000814] text-white font-sans
       flex flex-col min-h-[100dvh] pb-40
-      md:min-h-screen md:pb-0 md:max-w-6xl md:mx-auto md:px-10
+      md:min-h-screen md:pb-0 w-full md:px-6 lg:px-12
     ">
       {/* 1. 배경 (Fixed) */}
       <div className="fixed inset-0 z-0 bg-slate-950" />
@@ -267,8 +267,8 @@ export const CosmicMap = () => {
         </h2>
       </motion.div>
 
-      {/* Main Layout Container: Split View for Desktop */}
-      <div className="md:flex md:gap-12 md:items-start md:px-4 md:mt-12">
+      {/* Main Layout Container: Split View for Desktop - Edge to Edge */}
+      <div className="md:flex md:justify-between md:gap-10 lg:gap-20 md:items-start md:mt-12">
 
         {/* 4. Profile Section - LEFT SIDEBAR */}
         <div id="section-profile" className={`
