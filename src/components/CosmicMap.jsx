@@ -464,11 +464,11 @@ export const CosmicMap = () => {
                     <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow">
                       {district.emoji}
                     </div>
-                    <span className={`font-black ${district.text} text-[11px] mb-0.5 leading-tight text-center break-keep`}>
+                    <span className={`font-black ${district.text} text-xs mb-0.5 leading-tight text-center break-keep`}>
                       {district.name}
                     </span>
                     <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
-                      <span className={`text-[9px] font-bold ${district.text} tracking-tighter`}>
+                      <span className={`text-[10px] font-bold ${district.text} tracking-tighter`}>
                         {district.keyword}
                       </span>
                     </div>
