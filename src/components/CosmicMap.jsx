@@ -360,7 +360,15 @@ export const CosmicMap = () => {
                 className={`
                     cursor-pointer group
                     ${isMobile
-                    ? 'relative flex flex-col items-center justify-center aspect-square bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 active:border-blue-500 active:bg-blue-900/40 transition-all shadow-lg overflow-hidden'
+                    ? `relative flex flex-col items-center justify-center aspect-square 
+                       bg-gradient-to-b from-white/15 to-transparent 
+                       backdrop-blur-xl rounded-2xl 
+                       border border-white/20 
+                       shadow-[0_0_15px_rgba(0,0,0,0.5)] ${district.shadow}
+                       hover:scale-105 active:scale-105 
+                       hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] active:shadow-[0_0_40px_rgba(255,255,255,0.6)]
+                       transition-all duration-300 ease-out
+                       overflow-hidden`
                     : 'absolute'
                   }
                   `}
