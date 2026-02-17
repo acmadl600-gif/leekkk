@@ -392,7 +392,7 @@ export const CosmicMap = () => {
                   hover:scale-105 active:scale-95 
                   hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] active:shadow-none
                   transition-all duration-200 ease-out
-                  ${idx === 6 ? 'col-span-2 sm:col-span-1 sm:col-start-2' : ''}
+                  ${idx === 6 ? 'col-span-2 w-1/2 mx-auto sm:col-span-1 sm:w-full sm:col-start-2' : ''}
                 `}
                 animate={{
                   boxShadow: [
