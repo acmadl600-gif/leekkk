@@ -4,8 +4,7 @@ import {
   MapPin, X, Users, Store, Zap, Youtube,
   Utensils, Anchor, HeartPulse, Home, BookOpen, Star, Landmark,
   Factory, Palette, Cpu, ShoppingBag, Trees, HardHat, HandHeart,
-  School, Building2, Coins, Book, Instagram, Facebook,
-  Smartphone, Sun, HeartHandshake, Sparkles, Train, ArrowRight, PartyPopper
+  School, Building2, Coins, Book, Instagram, Facebook
 } from 'lucide-react';
 
 // 제물포구 18개 행정동 데이터 (공약 기반 매핑 & 아이콘 & 색상테마)
@@ -351,105 +350,71 @@ export const CosmicMap = () => {
         )}
       </div>
 
-      {/* 4.5 Refined Core Pledges Section - 1조 원 시대 */}
-      <div className="relative z-40 w-full px-4 mb-24 scroll-mt-24 max-w-7xl mx-auto">
-        {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="text-center mb-10"
-        >
-          <div className="inline-block relative">
-            <h3 className="relative z-10 text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 drop-shadow-[0_0_20px_rgba(6,182,212,0.8)] leading-tight py-2">
-              하나 된 제물포,<br className="md:hidden" />
-              1조 원 시대의 개막!
+      {/* 4.5 Core Pledges Section (Mobile Only) */}
+      {isMobile && (
+        <div className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-6"
+          >
+            <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+              하나 된 제물포,<br />1조 원 시대의 개막!
             </h3>
-            <div className="absolute -inset-4 bg-blue-500/20 blur-3xl -z-10 rounded-full opacity-50 animate-pulse"></div>
+          </motion.div>
+
+          {/* 7 Core Pledges Grid */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {[
+              { title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Building2, color: "text-blue-400" },
+              { title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "text-cyan-400" },
+              { title: "에너지", desc: "에너지 연금 도시", icon: Zap, color: "text-yellow-400" },
+              { title: "복지", desc: "제물포 올케어(All-Care) 복지", icon: HeartPulse, color: "text-red-400" },
+              { title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "text-orange-400" },
+              { title: "문화", desc: "문화 마법 도시", icon: Star, color: "text-purple-400" },
+              { title: "교통", desc: "인천역 KTX & 트램 교통혁명", icon: Factory, color: "text-green-400" },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className={`
+                  relative flex flex-col items-center justify-center p-4 rounded-2xl
+                  bg-white/5 backdrop-blur-md border border-white/10
+                  shadow-[0_0_15px_rgba(0,0,0,0.3)]
+                  ${idx === 6 ? 'col-span-2' : ''}
+                `}
+              >
+                <item.icon className={`w-8 h-8 mb-2 ${item.color} drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]`} />
+                <h4 className="text-lg font-bold text-white mb-1">{item.title}</h4>
+                <p className="text-xs text-slate-300 text-center break-keep">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
 
-        {/* 7 Core Pledges Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
-          {[
-            { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Smartphone, color: "text-blue-400", bg: "shadow-blue-500/30" },
-            { id: 2, title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "text-cyan-400", bg: "shadow-cyan-500/30" },
-            { id: 3, title: "에너지", desc: "보너스가 되는 에너지 연금 도시", icon: Sun, color: "text-yellow-400", bg: "shadow-yellow-500/30" },
-            { id: 4, title: "복지", desc: "제물포 올케어(All-Care) 복지", icon: HeartHandshake, color: "text-red-400", bg: "shadow-red-500/30" },
-            { id: 5, title: "경제", desc: "골목 경제 주권 & K-푸드 명소화", icon: Utensils, color: "text-orange-400", bg: "shadow-orange-500/30" },
-            { id: 6, title: "문화", desc: "낡은 벽돌이 황금이 되는 문화 마법", icon: Sparkles, color: "text-purple-400", bg: "shadow-purple-500/30" },
-            { id: 7, title: "교통", desc: "인천역 KTX & 트램 교통혁명", icon: Train, color: "text-green-400", bg: "shadow-green-500/30" }, // 7 Cards
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 1.05 }}
-              className={`
-                relative flex items-center p-5 rounded-2xl cursor-pointer group
-                bg-white/10 backdrop-blur-md border border-white/20
-                shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]
-                overflow-hidden transition-all duration-300
-                ${idx === 6 ? 'sm:col-span-2 md:col-span-3 lg:col-span-1' : ''} // Full width on mobile-ish if last? No, standardized.
-              `}
-            >
-              {/* Neon Glow on Border (Pulse) */}
-              <div className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 group-active:border-white/50 transition-all ${item.bg} shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]`}></div>
-
-              {/* Content */}
-              <div className="flex items-center gap-4 relative z-10 w-full">
-                <div className={`p-3 rounded-xl bg-black/20 backdrop-blur-sm shadow-inner border border-white/10 group-hover:scale-110 transition-transform`}>
-                  <item.icon className={`w-8 h-8 ${item.color} drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]`} />
-                </div>
-                <div className="flex flex-col flex-1 min-w-0">
-                  <h4 className={`text-xl font-black text-white mb-0.5 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-300 transition-all`}>
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-slate-300 font-medium truncate group-hover:text-white transition-colors">{item.desc}</p>
-                </div>
-                {/* Arrow Icon */}
-                <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Detailed PDF Button (Large & Gradient) */}
-        <div className="flex justify-center w-full px-2">
+          {/* Detailed PDF Button */}
           <a
             href="/promise.pdf.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="
-              relative overflow-hidden group
-              flex items-center justify-center gap-3 w-full md:w-auto md:px-12 py-5 rounded-2xl
-              bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_100%]
-              animate-shine
-              hover:shadow-[0_0_40px_rgba(6,182,212,0.6)]
-              border border-white/30 transition-all duration-500
+              flex items-center justify-center gap-2 w-full py-4 rounded-xl
+              bg-gradient-to-r from-blue-600 to-cyan-600
+              hover:from-blue-500 hover:to-cyan-500
+              text-white font-bold text-base
+              border border-white/20 shadow-[0_0_20px_rgba(37,99,235,0.4)]
+              active:scale-95 transition-all
             "
-            style={{ backgroundSize: '200% 100%', animation: 'gradientMove 3s linear infinite' }} // Custom animation style
           >
-            {/* Styles for shine animation */}
-            <style>{`
-              @keyframes gradientMove {
-                0% { background-position: 100% 0; }
-                100% { background-position: -100% 0; }
-              }
-            `}</style>
-
-            <div className="absolute inset-0 bg-white/20 group-hover:bg-white/0 transition-colors"></div>
-            <BookOpen className="w-6 h-6 text-white drop-shadow-md z-10" />
-            <span className="text-lg md:text-xl font-black text-white tracking-widest uppercase items-center flex gap-1 z-10 drop-shadow-sm">
-              [남궁형의 상세 공약집(PDF) 보기]
-            </span>
-            <div className="absolute bottom-0 left-0 h-1 bg-white/50 w-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            <BookOpen className="w-5 h-5" />
+            남궁형의 1조 원 시대 상세 공약집 보기
           </a>
         </div>
-      </div>
+      )}
 
       {/* 5. Policy Map Section - GRID STYLE */}
       <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
