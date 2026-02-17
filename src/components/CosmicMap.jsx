@@ -178,7 +178,7 @@ export const CosmicMap = () => {
     <div className="
       relative w-full bg-[#000814] text-white font-sans
       flex flex-col min-h-[100dvh] pb-40
-      md:block md:h-screen md:overflow-hidden md:pb-0 touch-pan-y
+      md:min-h-screen md:pb-0 md:max-w-6xl md:mx-auto md:px-10
     ">
       {/* 1. 배경 (Fixed) */}
       <div className="fixed inset-0 z-0 bg-slate-950" />
@@ -188,29 +188,31 @@ export const CosmicMap = () => {
         className="fixed inset-0 w-full h-full object-cover object-center opacity-30 z-0 pointer-events-none"
       />
 
-      {/* 2. Mobile App-Style Header (New) */}
-      {isMobile && (
-        <div className="fixed top-0 left-0 right-0 z-[60] bg-black/60 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-center items-center gap-2 shadow-lg">
-          <button
-            onClick={() => document.getElementById('section-profile')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-            className="px-4 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all text-white"
-          >
-            프로필
-          </button>
-          <button
-            onClick={() => document.getElementById('section-pledges')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-            className="px-4 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all text-white"
-          >
-            7대공약
-          </button>
-          <button
-            onClick={() => document.getElementById('section-map')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            className="px-4 py-1.5 text-xs font-bold bg-blue-600/80 rounded-full border border-blue-400/30 shadow-[0_0_10px_rgba(37,99,235,0.4)] active:scale-95 transition-all text-white"
-          >
-            공약지도
-          </button>
-        </div>
-      )}
+      {/* 2. Navigation Header (Responsive) */}
+      <div className="
+        fixed top-0 left-0 right-0 z-[60] px-4 py-3 flex justify-center items-center gap-2 shadow-lg
+        bg-black/60 backdrop-blur-xl border-b border-white/10
+        md:flex-row md:static md:bg-transparent md:border-none md:shadow-none md:py-6 md:justify-center md:gap-8
+      ">
+        <button
+          onClick={() => document.getElementById('section-profile')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+          className="px-4 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all text-white md:text-sm md:px-6 md:py-2 hover:bg-white/20"
+        >
+          프로필
+        </button>
+        <button
+          onClick={() => document.getElementById('section-pledges')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+          className="px-4 py-1.5 text-xs font-bold bg-white/10 rounded-full border border-white/10 active:bg-blue-600 active:border-blue-400 transition-all text-white md:text-sm md:px-6 md:py-2 hover:bg-white/20"
+        >
+          7대공약
+        </button>
+        <button
+          onClick={() => document.getElementById('section-map')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          className="px-4 py-1.5 text-xs font-bold bg-blue-600/80 rounded-full border border-blue-400/30 shadow-[0_0_10px_rgba(37,99,235,0.4)] active:scale-95 transition-all text-white md:text-sm md:px-6 md:py-2 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]"
+        >
+          공약지도
+        </button>
+      </div>
 
       {/* Candidate Image - Optimized for Mobile Background Visibility */}
       <div className={`fixed inset-0 z-10 pointer-events-none select-none ${isMobile ? 'bg-fixed bg-[position:30%_center] bg-cover' : ''}`}
