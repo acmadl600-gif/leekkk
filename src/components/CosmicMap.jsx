@@ -382,6 +382,7 @@ export const CosmicMap = () => {
                       className={`
                       absolute inset-0 flex flex-col items-center justify-center
                       ${item.color} border-2 rounded-3xl ${item.shadow}
+                      md:hover:shadow-glow transition-shadow duration-300
                     `}
                       style={{ backfaceVisibility: 'hidden' }}
                     >
@@ -390,6 +391,10 @@ export const CosmicMap = () => {
                       </div>
                       <span className={`font-black ${item.text} text-sm mb-1.5 drop-shadow-sm`}>
                         {item.title}
+                      </span>
+                      {/* Desktop Manifesto Phrase */}
+                      <span className="hidden md:block text-[10px] font-bold text-slate-600 mb-1.5 text-center px-2 leading-tight">
+                        {item.desc}
                       </span>
                       <div className="bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/50 shadow-sm">
                         <span className={`text-[10px] font-extrabold ${item.text} tracking-tight`}>

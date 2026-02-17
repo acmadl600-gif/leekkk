@@ -12,6 +12,9 @@ export default {
         'glass-white': 'rgba(255, 255, 255, 0.1)',
         'glass-border': 'rgba(255, 255, 255, 0.2)',
       },
+      boxShadow: {
+        'glow': '0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3)',
+      },
       animation: {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
