@@ -267,252 +267,253 @@ export const CosmicMap = () => {
         </h2>
       </motion.div>
 
-      {/* 4. Profile Section - CARD STYLE */}
-      <div id="section-profile" className={`
+      {/* Main Layout Container: Split View for Desktop */}
+      <div className="md:flex md:gap-12 md:items-start md:px-4 md:mt-12">
+
+        {/* 4. Profile Section - LEFT SIDEBAR */}
+        <div id="section-profile" className={`
         z-40 transition-all duration-500
         ${isMobile
-          ? 'relative w-full px-4 mb-20 flex flex-col items-center scroll-mt-24'
-          : 'fixed bottom-10 left-10 flex items-end gap-6'
-        }
+            ? 'relative w-full px-4 mb-20 flex flex-col items-center scroll-mt-24'
+            : 'md:w-[340px] md:shrink-0 md:sticky md:top-32'
+          }
       `}>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className={`
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className={`
             text-left
             ${isMobile
-              ? 'w-full bg-black/20 backdrop-blur-sm border border-white/20 rounded-3xl p-6 shadow-xl'
-              : 'w-full max-w-xl bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8 backdrop-blur-xl rounded-3xl border border-white/5'
-            }
+                ? 'w-full bg-black/20 backdrop-blur-sm border border-white/20 rounded-3xl p-6 shadow-xl'
+                : 'w-full max-w-xl bg-gradient-to-br from-black/20 via-blue-900/5 to-transparent p-8 backdrop-blur-xl rounded-3xl border border-white/5'
+              }
           `}
-        >
-          <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-3 ${isMobile ? 'text-2xl border-b border-white/10 pb-4' : 'text-3xl'}`}>
-            <span className="w-1.5 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6]"></span>
-            걸어온 길
-          </h3>
-          <ul className={`space-y-3 font-medium ${isMobile ? 'text-sm text-slate-200' : 'text-lg text-slate-200'}`}>
-            {[
-              "인천대학교 행정대학원 행정학 석사",
-              "제8대 인천광역시의회 의원 (청년특별위원장)",
-              "대통령 소속 자치분권위원회 정책자문위원",
-              "대통령 직속 국가균형발전위 국민소통특별위원",
-              "제20대 대선 이재명 후보 선거캠프 실무팀장",
-              "더불어민주당 전략기획위원회 부위원장",
-              "단국대학교 초빙교수 (현)",
-              "더불어민주당 중앙당 부대변인 (현)",
-              "(사)제물포정책연구원장 (현)",
-              "박찬대 국회의원 정책특별보좌관 (현)"
-            ].map((item, i) => (
-              <li key={i} className={`flex gap-3 ${item.includes("(현)") ? "text-white font-bold" : ""}`}>
-                <span className={`${item.includes("(현)") ? "text-yellow-400" : "text-blue-500"} min-w-[6px] mt-1.5`}>●</span>
-                {item}
-              </li>
-            ))}
-          </ul>
+          >
+            <h3 className={`text-blue-400 font-black mb-6 flex items-center gap-3 ${isMobile ? 'text-2xl border-b border-white/10 pb-4' : 'text-3xl'}`}>
+              <span className="w-1.5 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6]"></span>
+              걸어온 길
+            </h3>
+            <ul className={`space-y-3 font-medium ${isMobile ? 'text-sm text-slate-200' : 'text-lg text-slate-200'}`}>
+              {[
+                "인천대학교 행정대학원 행정학 석사",
+                "제8대 인천광역시의회 의원 (청년특별위원장)",
+                "대통령 소속 자치분권위원회 정책자문위원",
+                "대통령 직속 국가균형발전위 국민소통특별위원",
+                "제20대 대선 이재명 후보 선거캠프 실무팀장",
+                "더불어민주당 전략기획위원회 부위원장",
+                "단국대학교 초빙교수 (현)",
+                "더불어민주당 중앙당 부대변인 (현)",
+                "(사)제물포정책연구원장 (현)",
+                "박찬대 국회의원 정책특별보좌관 (현)"
+              ].map((item, i) => (
+                <li key={i} className={`flex gap-3 ${item.includes("(현)") ? "text-white font-bold" : ""}`}>
+                  <span className={`${item.includes("(현)") ? "text-yellow-400" : "text-blue-500"} min-w-[6px] mt-1.5`}>●</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
 
-          {/* Pledge Book Download Button */}
-          <a
-            href="/promise.pdf.pdf"
-            download="남궁형_공약집.pdf"
-            className={`
+            {/* Pledge Book Download Button */}
+            <a
+              href="/promise.pdf.pdf"
+              download="남궁형_공약집.pdf"
+              className={`
               mt-6 flex items-center justify-center gap-2 w-full py-3 rounded-xl
               bg-blue-600/90 hover:bg-blue-500 text-white font-bold
               border border-white/20 shadow-lg active:scale-95 transition-all
               ${isMobile ? 'text-sm' : 'text-base'}
             `}
-          >
-            <BookOpen className="w-5 h-5" />
-            남궁형 공약집 다운로드
-          </a>
-        </motion.div>
+            >
+              <BookOpen className="w-5 h-5" />
+              남궁형 공약집 다운로드
+            </a>
+          </motion.div>
 
-        {/* Desktop Socials */}
-        {!isMobile && (
-          <div className="flex gap-4">
-            <motion.a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-green-900/50 transition-colors"><Book className="w-6 h-6 text-white" /></motion.a>
-            <motion.a href="https://www.instagram.com/namlider123" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-pink-900/50 transition-colors"><Instagram className="w-6 h-6 text-white" /></motion.a>
-            <motion.a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-blue-900/50 transition-colors"><Facebook className="w-6 h-6 text-white" /></motion.a>
-          </div>
-        )}
-      </div>
-
-      {/* 4.5 Core Pledges Section - Native Design */}
-      {isMobile && (
-        <div id="section-pledges" className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
-          {/* Section Title (Matches Map Section) */}
-          <div className="mb-6 flex flex-col items-center gap-1">
-            <div className="flex items-center gap-4 w-full">
-              <div className="h-px bg-white/20 flex-1" />
-              <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">7대 핵심 공약</h3>
-              <div className="h-px bg-white/20 flex-1" />
+          {/* Desktop Socials */}
+          {!isMobile && (
+            <div className="flex gap-4">
+              <motion.a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-green-900/50 transition-colors"><Book className="w-6 h-6 text-white" /></motion.a>
+              <motion.a href="https://www.instagram.com/namlider123" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-pink-900/50 transition-colors"><Instagram className="w-6 h-6 text-white" /></motion.a>
+              <motion.a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="bg-black/50 p-3 rounded-full border border-white/20 hover:bg-blue-900/50 transition-colors"><Facebook className="w-6 h-6 text-white" /></motion.a>
             </div>
-            <p className="text-xs text-blue-300/80 animate-pulse">
-              아이콘을 클릭하면 상세 내용을 볼 수 있습니다
-            </p>
-          </div>
+          )}
+        </div>
 
-          {/* 7 Core Pledges Grid (Matches Map Grid) */}
-          {/* 7 Core Pledges Grid (Flip Interaction) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
-            {[
-              { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", emoji: "🤖", keyword: "#AI_민원버스", color: "bg-blue-100 border-blue-300", shadow: "shadow-[0_4px_0_#60a5fa]", text: "text-blue-700", benefit: "구청까지 가지 마세요.\n버스 한 대가 완벽한 구청이 되어 찾아갑니다!" },
-              { id: 2, title: "주권", desc: "디지털 주민 주권 시대", emoji: "🤝", keyword: "#주민주권", color: "bg-cyan-100 border-cyan-300", shadow: "shadow-[0_4px_0_#22d3ee]", text: "text-cyan-700", benefit: "예산 편성권과 결정권,\n구청장의 권한을 주민 여러분께 돌려드립니다." },
-              { id: 3, title: "에너지", desc: "에너지 연금 도시", emoji: "☀️", keyword: "#에너지연금", color: "bg-yellow-100 border-yellow-300", shadow: "shadow-[0_4px_0_#facc15]", text: "text-yellow-700", benefit: "제물포에 산다는 것만으로도\n'에너지 연금' 혜택을 받습니다." },
-              { id: 4, title: "복지", desc: "제물포 올케어 복지", emoji: "🧸", keyword: "#올케어복지", color: "bg-pink-100 border-pink-300", shadow: "shadow-[0_4px_0_#f472b6]", text: "text-pink-700", benefit: "아프기 전에 미리 챙겨드립니다.\n병원비 걱정 없는 건강 도시를 만듭니다." },
-              { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", emoji: "🍱", keyword: "#K-푸드", color: "bg-orange-100 border-orange-300", shadow: "shadow-[0_4px_0_#fb923c]", text: "text-orange-700", benefit: "장사가 안 돼서 문 닫는 일이 없도록,\n남궁형이 든든한 버팀목이 되겠습니다." },
-              { id: 6, title: "문화", desc: "문화 마법 도시", emoji: "✨", keyword: "#문화마법", color: "bg-purple-100 border-purple-300", shadow: "shadow-[0_4px_0_#c084fc]", text: "text-purple-700", benefit: "제물포의 역사가 곧 돈이 되고,\n밥이 되는 문화 산업을 만듭니다." },
-              { id: 7, title: "교통", desc: "인천역 KTX & 트램", emoji: "🚄", keyword: "#KTX트램", color: "bg-green-100 border-green-300", shadow: "shadow-[0_4px_0_#4ade80]", text: "text-green-700", benefit: "남궁형의 정치력으로 중앙정부 철도 계획에\n'제물포' 세 글자를 새겨넣겠습니다." },
-            ].map((item, idx) => {
-              const borderColor = item.color.split(' ').find(c => c.startsWith('border-')) || 'border-slate-200';
+        {/* RIGHT CONTENT COLUMN */}
+        <div className="md:flex-1 md:min-w-0">
 
-              return (
-                <div
-                  key={idx}
-                  className={`relative aspect-square ${idx === 6 ? 'col-span-2 w-1/2 mx-auto sm:col-span-1 sm:w-full sm:col-start-2' : ''}`}
-                  style={{ perspective: '1000px' }}
-                  onClick={() => setFlippedId(flippedId === item.id ? null : item.id)}
-                >
-                  <div
-                    className={`w-full h-full relative transition-all duration-500 cursor-pointer`}
-                    style={{ transformStyle: 'preserve-3d', transform: flippedId === item.id ? "rotateY(180deg)" : "rotateY(0deg)" }}
-                  >
-                    {/* Front Face (Cute 3D) */}
+          {/* 4.5 Core Pledges Section - Responsive Grid */}
+          {isMobile && (
+            <div id="section-pledges" className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
+              {/* Section Title (Matches Map Section) */}
+              <div className="mb-6 flex flex-col items-center gap-1">
+                <div className="flex items-center gap-4 w-full">
+                  <div className="h-px bg-white/20 flex-1" />
+                  <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">7대 핵심 공약</h3>
+                  <div className="h-px bg-white/20 flex-1" />
+                </div>
+                <p className="text-xs text-blue-300/80 animate-pulse">
+                  아이콘을 클릭하면 상세 내용을 볼 수 있습니다
+                </p>
+              </div>
+
+              {/* 7 Core Pledges Grid (Flip Interaction) */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
+                {[
+                  { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", emoji: "🤖", keyword: "#AI_민원버스", color: "bg-blue-100 border-blue-300", shadow: "shadow-[0_4px_0_#60a5fa]", text: "text-blue-700", benefit: "구청까지 가지 마세요.\n버스 한 대가 완벽한 구청이 되어 찾아갑니다!" },
+                  { id: 2, title: "주권", desc: "디지털 주민 주권 시대", emoji: "🤝", keyword: "#주민주권", color: "bg-cyan-100 border-cyan-300", shadow: "shadow-[0_4px_0_#22d3ee]", text: "text-cyan-700", benefit: "예산 편성권과 결정권,\n구청장의 권한을 주민 여러분께 돌려드립니다." },
+                  { id: 3, title: "에너지", desc: "에너지 연금 도시", emoji: "☀️", keyword: "#에너지연금", color: "bg-yellow-100 border-yellow-300", shadow: "shadow-[0_4px_0_#facc15]", text: "text-yellow-700", benefit: "제물포에 산다는 것만으로도\n'에너지 연금' 혜택을 받습니다." },
+                  { id: 4, title: "복지", desc: "제물포 올케어 복지", emoji: "🧸", keyword: "#올케어복지", color: "bg-pink-100 border-pink-300", shadow: "shadow-[0_4px_0_#f472b6]", text: "text-pink-700", benefit: "아프기 전에 미리 챙겨드립니다.\n병원비 걱정 없는 건강 도시를 만듭니다." },
+                  { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", emoji: "🍱", keyword: "#K-푸드", color: "bg-orange-100 border-orange-300", shadow: "shadow-[0_4px_0_#fb923c]", text: "text-orange-700", benefit: "장사가 안 돼서 문 닫는 일이 없도록,\n남궁형이 든든한 버팀목이 되겠습니다." },
+                  { id: 6, title: "문화", desc: "문화 마법 도시", emoji: "✨", keyword: "#문화마법", color: "bg-purple-100 border-purple-300", shadow: "shadow-[0_4px_0_#c084fc]", text: "text-purple-700", benefit: "제물포의 역사가 곧 돈이 되고,\n밥이 되는 문화 산업을 만듭니다." },
+                  { id: 7, title: "교통", desc: "인천역 KTX & 트램", emoji: "🚄", keyword: "#KTX트램", color: "bg-green-100 border-green-300", shadow: "shadow-[0_4px_0_#4ade80]", text: "text-green-700", benefit: "남궁형의 정치력으로 중앙정부 철도 계획에\n'제물포' 세 글자를 새겨넣겠습니다." },
+                ].map((item, idx) => {
+                  const borderColor = item.color.split(' ').find(c => c.startsWith('border-')) || 'border-slate-200';
+
+                  return (
                     <div
-                      className={`
+                      key={idx}
+                      className={`relative aspect-square ${idx === 6 ? 'col-span-2 w-1/2 mx-auto sm:col-span-1 sm:w-full sm:col-start-2' : ''}`}
+                      style={{ perspective: '1000px' }}
+                      onClick={() => setFlippedId(flippedId === item.id ? null : item.id)}
+                    >
+                      <div
+                        className={`w-full h-full relative transition-all duration-500 cursor-pointer`}
+                        style={{ transformStyle: 'preserve-3d', transform: flippedId === item.id ? "rotateY(180deg)" : "rotateY(0deg)" }}
+                      >
+                        {/* Front Face (Cute 3D) */}
+                        <div
+                          className={`
                       absolute inset-0 flex flex-col items-center justify-center
                       ${item.color} border-2 rounded-3xl ${item.shadow}
                       md:hover:shadow-glow transition-shadow duration-300
                     `}
-                      style={{ backfaceVisibility: 'hidden' }}
-                    >
-                      <div className="text-4xl drop-shadow-md mb-2 animate-bounce-slow">
-                        {item.emoji}
-                      </div>
-                      <span className={`font-black ${item.text} text-sm mb-1.5 drop-shadow-sm`}>
-                        {item.title}
-                      </span>
-                      {/* Desktop Manifesto Phrase */}
-                      <span className="hidden md:block text-[10px] font-bold text-slate-600 mb-1.5 text-center px-2 leading-tight">
-                        {item.desc}
-                      </span>
-                      <div className="bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/50 shadow-sm">
-                        <span className={`text-[10px] font-extrabold ${item.text} tracking-tight`}>
-                          {item.keyword}
-                        </span>
-                      </div>
-                    </div>
+                          style={{ backfaceVisibility: 'hidden' }}
+                        >
+                          <div className="text-4xl drop-shadow-md mb-2 animate-bounce-slow">
+                            {item.emoji}
+                          </div>
+                          <span className={`font-black ${item.text} text-sm mb-1.5 drop-shadow-sm`}>
+                            {item.title}
+                          </span>
+                          {/* Desktop Manifesto Phrase */}
+                          <span className="hidden md:block text-[10px] font-bold text-slate-600 mb-1.5 text-center px-2 leading-tight">
+                            {item.desc}
+                          </span>
+                          <div className="bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/50 shadow-sm">
+                            <span className={`text-[10px] font-extrabold ${item.text} tracking-tight`}>
+                              {item.keyword}
+                            </span>
+                          </div>
+                        </div>
 
-                    {/* Back Face (Benefit Text - Brightened) */}
-                    <div
-                      className={`
+                        {/* Back Face (Benefit Text - Brightened) */}
+                        <div
+                          className={`
                       absolute inset-0 flex flex-col items-center justify-center p-4 text-center
                       bg-white/95 backdrop-blur-xl border-4 ${borderColor} rounded-3xl shadow-xl
                     `}
-                      style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                    >
-                      <p className={`text-sm font-black ${item.text} leading-relaxed break-keep whitespace-pre-line drop-shadow-sm`}>
-                        {item.benefit}
-                      </p>
+                          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                        >
+                          <p className={`text-sm font-black ${item.text} leading-relaxed break-keep whitespace-pre-line drop-shadow-sm`}>
+                            {item.benefit}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+                  )
+                })}
+              </div>
 
-          {/* Detailed PDF Button - Keep large button but native style */}
-          <a
-            href="/promise.pdf.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
+              {/* Detailed PDF Button - Keep large button but native style */}
+              <a
+                href="/promise.pdf.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
               flex items-center justify-center gap-2 w-full py-4 rounded-xl
               bg-blue-600/90 hover:bg-blue-500 
               text-white font-bold text-base
               border border-white/20 shadow-[0_0_20px_rgba(37,99,235,0.4)]
               active:scale-95 transition-all
             "
-          >
-            <BookOpen className="w-5 h-5" />
-            남궁형의 1조 원 시대 상세 공약집 보기
-          </a>
-        </div>
-      )}
-
-      {/* 5. Policy Map Section - GRID STYLE */}
-      <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
-        {isMobile && (
-          <div className="mb-6 flex flex-col items-center gap-1">
-            <div className="flex items-center gap-4 w-full">
-              <div className="h-px bg-white/20 flex-1" />
-              <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">우리 동네 공약</h3>
-              <div className="h-px bg-white/20 flex-1" />
-            </div>
-            <p className="text-xs text-blue-300/80 animate-pulse">
-              동네 아이콘을 클릭하면 상세 공약이 나타납니다
-            </p>
-          </div>
-        )}
-
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 w-full px-1">
-          {districtData.map((district, index) => {
-            return (
-              <motion.div
-                key={district.id}
-                onClick={() => setSelectedId(district.id)}
-                whileTap={{ scale: 0.9, rotate: index % 2 === 0 ? -3 : 3 }}
-                className={`
-                    cursor-pointer group
-                    relative flex flex-col items-center justify-center aspect-square 
-                    ${district.color} border-2 
-                    rounded-2xl 
-                    ${district.shadow}
-                    transition-all duration-150
-                    md:hover:-translate-y-2 md:transition-transform md:duration-300
-                    md:hover:shadow-glow
-                  `}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
               >
-                {isMobile ? (
-                  <>
-                    {/* Mobile: Cute 3D Style */}
-                    <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow">
-                      {district.emoji}
-                    </div>
-                    <span className={`font-black ${district.text} text-xs mb-0.5 leading-tight text-center break-keep`}>
-                      {district.name}
-                    </span>
-                    <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
-                      <span className={`text-[10px] font-bold ${district.text} tracking-tighter`}>
-                        {district.keyword}
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Desktop: Simple & Clean Line Icons */}
-                    <div className="flex flex-col items-center justify-center py-2 transition-all duration-300 group-hover:-translate-y-1">
-                      <div className="mb-3 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-blue-600/20 group-hover:border-blue-500/50 transition-all duration-300">
-                        {React.createElement(district.icon || MapPin, {
-                          className: "w-8 h-8 text-slate-400 group-hover:text-blue-400 transition-colors duration-300",
-                          strokeWidth: 1.5
-                        })}
-                      </div>
-                      <span className="text-sm font-medium text-slate-500 group-hover:text-white transition-colors duration-300">
-                        {district.name}
-                      </span>
-                    </div>
-                  </>
-                )}
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
+                <BookOpen className="w-5 h-5" />
+                남궁형의 1조 원 시대 상세 공약집 보기
+              </a>
+            </div>
+          )}
+
+          {/* 5. Policy Map Section - GRID STYLE */}
+          <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
+            {isMobile && (
+              <div className="mb-6 flex flex-col items-center gap-1">
+                <div className="flex items-center gap-4 w-full">
+                  <div className="h-px bg-white/20 flex-1" />
+                  <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">우리 동네 공약</h3>
+                  <div className="h-px bg-white/20 flex-1" />
+                </div>
+                <p className="text-xs text-blue-300/80 animate-pulse">
+                  동네 아이콘을 클릭하면 상세 공약이 나타납니다
+                </p>
+              </div>
+            )}
+
+            <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-5 w-full px-1">
+              {districtData.map((district, index) => {
+                return (
+                  <motion.div
+                    key={district.id}
+                    onClick={() => setSelectedId(district.id)}
+                    whileTap={{ scale: 0.95 }}
+                    className={`
+                    cursor-pointer group relative 
+                    flex flex-col items-center justify-center aspect-square 
+                    rounded-2xl border-2 transition-all duration-300
+                    ${isMobile ? `${district.color} ${district.shadow}` : 'bg-white/5 border-white/10 hover:border-white/30 hover:shadow-xl hover:-translate-y-1'}
+                  `}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    {isMobile ? (
+                      <>
+                        {/* Mobile: Cute 3D Emoji */}
+                        <div className="text-3xl drop-shadow-md mb-1 animate-bounce-slow">{district.emoji}</div>
+                        <span className={`font-black ${district.text} text-xs mb-0.5 text-center`}>{district.name}</span>
+                        <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
+                          <span className={`text-[10px] font-bold ${district.text} tracking-tighter`}>{district.keyword}</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {/* Desktop: Professional Pastel Card + Line Icon */}
+                        <div className={`
+                        absolute inset-0 rounded-2xl opacity-100 transition-all duration-300
+                        ${district.color} border-0
+                    `} />
+
+                        <div className="relative z-10 flex flex-col items-center gap-3">
+                          <div className="p-3 bg-white/40 rounded-full shadow-sm backdrop-blur-md ring-1 ring-white/40">
+                            {React.createElement(district.icon || MapPin, {
+                              className: `w-8 h-8 ${district.text}`,
+                              strokeWidth: 2
+                            })}
+                          </div>
+                          <span className={`text-base font-extrabold ${district.text}`}>{district.name}</span>
+                        </div>
+                      </>
+                    )}
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+
+        </div> {/* End Right Content Column */}
+      </div> {/* End Main Layout Container */}
 
       {/* Mobile Sticky Footer */}
       {isMobile && (
