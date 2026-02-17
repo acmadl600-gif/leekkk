@@ -477,18 +477,37 @@ export const CosmicMap = () => {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
               >
-                {/* Cute 3D Render for BOTH Mobile and Desktop */}
-                <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow md:text-5xl md:mb-2">
-                  {district.emoji}
-                </div>
-                <span className={`font-black ${district.text} text-xs mb-0.5 leading-tight text-center break-keep md:text-sm`}>
-                  {district.name}
-                </span>
-                <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm md:px-3 md:py-1">
-                  <span className={`text-[10px] font-bold ${district.text} tracking-tighter md:text-xs`}>
-                    {district.keyword}
-                  </span>
-                </div>
+                {isMobile ? (
+                  <>
+                    {/* Mobile: Cute 3D Style */}
+                    <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow">
+                      {district.emoji}
+                    </div>
+                    <span className={`font-black ${district.text} text-xs mb-0.5 leading-tight text-center break-keep`}>
+                      {district.name}
+                    </span>
+                    <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
+                      <span className={`text-[10px] font-bold ${district.text} tracking-tighter`}>
+                        {district.keyword}
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Desktop: Simple & Clean Line Icons */}
+                    <div className="flex flex-col items-center justify-center py-2 transition-all duration-300 group-hover:-translate-y-1">
+                      <div className="mb-3 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-blue-600/20 group-hover:border-blue-500/50 transition-all duration-300">
+                        {React.createElement(district.icon || MapPin, {
+                          className: "w-8 h-8 text-slate-400 group-hover:text-blue-400 transition-colors duration-300",
+                          strokeWidth: 1.5
+                        })}
+                      </div>
+                      <span className="text-sm font-medium text-slate-500 group-hover:text-white transition-colors duration-300">
+                        {district.name}
+                      </span>
+                    </div>
+                  </>
+                )}
               </motion.div>
             )
           })}
