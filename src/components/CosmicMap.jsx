@@ -4,7 +4,8 @@ import {
   MapPin, X, Users, Store, Zap, Youtube,
   Utensils, Anchor, HeartPulse, Home, BookOpen, Star, Landmark,
   Factory, Palette, Cpu, ShoppingBag, Trees, HardHat, HandHeart,
-  School, Building2, Coins, Book, Instagram, Facebook
+  School, Building2, Coins, Book, Instagram, Facebook,
+  Smartphone, Sun, HeartHandshake, Sparkles, Train, ArrowRight
 } from 'lucide-react';
 
 // 제물포구 18개 행정동 데이터 (공약 기반 매핑 & 아이콘 & 색상테마)
