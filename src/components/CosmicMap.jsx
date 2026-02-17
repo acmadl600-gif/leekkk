@@ -370,13 +370,13 @@ export const CosmicMap = () => {
           {/* 7 Core Pledges Grid (Matches Map Grid) */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
             {[
-              { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Smartphone, color: "from-blue-400 to-blue-600", shadow: "shadow-blue-500/80" },
-              { id: 2, title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "from-cyan-400 to-cyan-600", shadow: "shadow-cyan-500/80" },
-              { id: 3, title: "에너지", desc: "에너지 연금 도시", icon: Sun, color: "from-yellow-400 to-yellow-600", shadow: "shadow-yellow-500/80" },
-              { id: 4, title: "복지", desc: "제물포 올케어 복지", icon: HeartHandshake, color: "from-red-400 to-red-600", shadow: "shadow-red-500/80" },
-              { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "from-orange-400 to-orange-600", shadow: "shadow-orange-500/80" },
-              { id: 6, title: "문화", desc: "문화 마법 도시", icon: Sparkles, color: "from-purple-400 to-purple-600", shadow: "shadow-purple-500/80" },
-              { id: 7, title: "교통", desc: "인천역 KTX & 트램", icon: Train, color: "from-green-400 to-green-600", shadow: "shadow-green-500/80" },
+              { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", icon: Smartphone, color: "from-blue-400 to-blue-600", shadow: "shadow-blue-500/80", iconColor: "text-blue-400" },
+              { id: 2, title: "주권", desc: "디지털 주민 주권 시대", icon: Users, color: "from-cyan-400 to-cyan-600", shadow: "shadow-cyan-500/80", iconColor: "text-cyan-400" },
+              { id: 3, title: "에너지", desc: "에너지 연금 도시", icon: Sun, color: "from-yellow-400 to-yellow-600", shadow: "shadow-yellow-500/80", iconColor: "text-yellow-400" },
+              { id: 4, title: "복지", desc: "제물포 올케어 복지", icon: HeartHandshake, color: "from-red-400 to-red-600", shadow: "shadow-red-500/80", iconColor: "text-red-400" },
+              { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", icon: Utensils, color: "from-orange-400 to-orange-600", shadow: "shadow-orange-500/80", iconColor: "text-orange-400" },
+              { id: 6, title: "문화", desc: "문화 마법 도시", icon: Sparkles, color: "from-purple-400 to-purple-600", shadow: "shadow-purple-500/80", iconColor: "text-purple-400" },
+              { id: 7, title: "교통", desc: "인천역 KTX & 트램", icon: Train, color: "from-green-400 to-green-600", shadow: "shadow-green-500/80", iconColor: "text-green-400" },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -416,7 +416,7 @@ export const CosmicMap = () => {
 
                 <div className="relative flex flex-col items-center scale-100">
                   <div className="flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)] w-12 h-12 bg-black/10 mb-2 ring-1 ring-white/40 backdrop-brightness-125">
-                    <item.icon className="w-7 h-7 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]" />
+                    <item.icon className={`w-7 h-7 ${item.iconColor} drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]`} />
                   </div>
                   <span className="font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-xs px-0.5 text-center whitespace-normal break-keep leading-3 tracking-tighter">
                     {item.title}
