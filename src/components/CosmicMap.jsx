@@ -455,60 +455,40 @@ export const CosmicMap = () => {
           </div>
         )}
 
-        <div className={`${isMobile ? 'grid grid-cols-3 gap-2 w-full px-1' : 'absolute inset-0 pointer-events-auto'}`}>
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 w-full px-1">
           {districtData.map((district, index) => {
-            const row = Math.floor(index / 3);
-            const col = index % 3;
-            const top = isMobile ? 'auto' : `calc(15% + (${row} * 11%))`;
-            const left = isMobile ? 'auto' : `calc(68% + (${col} * 9%))`;
-            const IconComponent = district.icon || MapPin;
-
             return (
               <motion.div
                 key={district.id}
                 onClick={() => setSelectedId(district.id)}
-                whileTap={isMobile ? { scale: 0.9, rotate: index % 2 === 0 ? -3 : 3 } : {}}
+                whileTap={{ scale: 0.9, rotate: index % 2 === 0 ? -3 : 3 }}
                 className={`
                     cursor-pointer group
-                    ${isMobile
-                    ? `relative flex flex-col items-center justify-center aspect-square 
-                       ${district.color} border-2 
-                       rounded-2xl 
-                       ${district.shadow}
-                       transition-all duration-150`
-                    : 'absolute'
-                  }
+                    relative flex flex-col items-center justify-center aspect-square 
+                    ${district.color} border-2 
+                    rounded-2xl 
+                    ${district.shadow}
+                    transition-all duration-150
+                    md:hover:-translate-y-2 md:transition-transform md:duration-300
+                    md:hover:shadow-glow
                   `}
-                style={{ top, left }}
-                initial={isMobile ? { opacity: 0, scale: 0.5 } : {}}
-                whileInView={isMobile ? { opacity: 1, scale: 1 } : {}}
-                transition={isMobile ? { type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 } : { repeat: Infinity, duration: 3 + (index % 3), delay: index * 0.1 }}
-                animate={!isMobile ? { y: [0, -8, 0] } : {}}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.05 }}
               >
-                {isMobile ? (
-                  <>
-                    <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow">
-                      {district.emoji}
-                    </div>
-                    <span className={`font-black ${district.text} text-xs mb-0.5 leading-tight text-center break-keep`}>
-                      {district.name}
-                    </span>
-                    <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
-                      <span className={`text-[10px] font-bold ${district.text} tracking-tighter`}>
-                        {district.keyword}
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <div className="relative flex flex-col items-center scale-100">
-                    <div className="flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)] w-16 h-16 bg-black/40 border border-white/50">
-                      <IconComponent className="w-8 h-8 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]" />
-                    </div>
-                    <span className="mt-2 text-xs bg-black/60 px-2 py-1 rounded-full font-bold text-white">
-                      {district.name}
-                    </span>
-                  </div>
-                )}
+                {/* Cute 3D Render for BOTH Mobile and Desktop */}
+                <div className="text-3xl drop-shadow-md mb-0.5 animate-bounce-slow md:text-5xl md:mb-2">
+                  {district.emoji}
+                </div>
+                <span className={`font-black ${district.text} text-xs mb-0.5 leading-tight text-center break-keep md:text-sm`}>
+                  {district.name}
+                </span>
+                <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm md:px-3 md:py-1">
+                  <span className={`text-[10px] font-bold ${district.text} tracking-tighter md:text-xs`}>
+                    {district.keyword}
+                  </span>
+                </div>
               </motion.div>
             )
           })}
