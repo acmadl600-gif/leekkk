@@ -449,6 +449,9 @@ export const CosmicMap = () => {
           <div id="section-map" className={`relative z-30 w-full ${isMobile ? 'px-4 pb-12 scroll-mt-24' : 'flex-grow h-screen pointer-events-none'}`}>
             {isMobile && (
               <div className="mb-6 flex flex-col items-center gap-1">
+                <div className="md:hidden text-cyan-400 font-bold text-xl mb-1 drop-shadow-[0_0_10px_rgba(34,211,238,0.9)]">
+                  남궁형
+                </div>
                 <div className="flex items-center gap-4 w-full">
                   <div className="h-px bg-white/20 flex-1" />
                   <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">우리 동네 공약</h3>
@@ -476,7 +479,7 @@ export const CosmicMap = () => {
                         : 'rounded-xl hover:bg-white/5 hover:-translate-y-1 py-2'
                       }
                   `}
-                    style={isMobile ? { backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)' } : {}}
+                    style={isMobile ? { backgroundColor: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)' } : {}}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
