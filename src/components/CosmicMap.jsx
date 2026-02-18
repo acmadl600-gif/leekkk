@@ -472,10 +472,11 @@ export const CosmicMap = () => {
                     flex flex-col items-center justify-center 
                     transition-all duration-300
                     ${isMobile
-                        ? `aspect-square rounded-2xl border-2 ${district.color} ${district.shadow}`
+                        ? `aspect-square rounded-2xl border border-white/20 ${district.shadow}`
                         : 'rounded-xl hover:bg-white/5 hover:-translate-y-1 py-2'
                       }
                   `}
+                    style={isMobile ? { backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)' } : {}}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
