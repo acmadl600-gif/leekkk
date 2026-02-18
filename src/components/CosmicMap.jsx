@@ -348,6 +348,9 @@ export const CosmicMap = () => {
             <div id="section-pledges" className="relative z-40 w-full px-4 mb-20 scroll-mt-24">
               {/* Section Title (Matches Map Section) */}
               <div className="mb-6 flex flex-col items-center gap-1">
+                <div className="md:hidden text-cyan-400 font-bold text-xl mb-1 drop-shadow-[0_0_10px_rgba(34,211,238,0.9)] text-center">
+                  남궁형
+                </div>
                 <div className="flex items-center gap-4 w-full">
                   <div className="h-px bg-white/20 flex-1" />
                   <h3 className="text-xl font-black text-white whitespace-nowrap drop-shadow-md">7대 핵심 공약</h3>
@@ -361,13 +364,13 @@ export const CosmicMap = () => {
               {/* 7 Core Pledges Grid (Flip Interaction) */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
                 {[
-                  { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", emoji: "🤖", keyword: "#AI_민원버스", color: "bg-blue-100 border-blue-300", shadow: "shadow-[0_4px_0_#60a5fa]", text: "text-blue-700", benefit: "구청까지 가지 마세요.\n버스 한 대가 완벽한 구청이 되어 찾아갑니다!" },
-                  { id: 2, title: "주권", desc: "디지털 주민 주권 시대", emoji: "🤝", keyword: "#주민주권", color: "bg-cyan-100 border-cyan-300", shadow: "shadow-[0_4px_0_#22d3ee]", text: "text-cyan-700", benefit: "예산 편성권과 결정권,\n구청장의 권한을 주민 여러분께 돌려드립니다." },
-                  { id: 3, title: "에너지", desc: "에너지 연금 도시", emoji: "☀️", keyword: "#에너지연금", color: "bg-yellow-100 border-yellow-300", shadow: "shadow-[0_4px_0_#facc15]", text: "text-yellow-700", benefit: "제물포에 산다는 것만으로도\n'에너지 연금' 혜택을 받습니다." },
-                  { id: 4, title: "복지", desc: "제물포 올케어 복지", emoji: "🧸", keyword: "#올케어복지", color: "bg-pink-100 border-pink-300", shadow: "shadow-[0_4px_0_#f472b6]", text: "text-pink-700", benefit: "아프기 전에 미리 챙겨드립니다.\n병원비 걱정 없는 건강 도시를 만듭니다." },
-                  { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", emoji: "🍱", keyword: "#K-푸드", color: "bg-orange-100 border-orange-300", shadow: "shadow-[0_4px_0_#fb923c]", text: "text-orange-700", benefit: "장사가 안 돼서 문 닫는 일이 없도록,\n남궁형이 든든한 버팀목이 되겠습니다." },
-                  { id: 6, title: "문화", desc: "문화 마법 도시", emoji: "✨", keyword: "#문화마법", color: "bg-purple-100 border-purple-300", shadow: "shadow-[0_4px_0_#c084fc]", text: "text-purple-700", benefit: "제물포의 역사가 곧 돈이 되고,\n밥이 되는 문화 산업을 만듭니다." },
-                  { id: 7, title: "교통", desc: "인천역 KTX & 트램", emoji: "🚄", keyword: "#KTX트램", color: "bg-green-100 border-green-300", shadow: "shadow-[0_4px_0_#4ade80]", text: "text-green-700", benefit: "남궁형의 정치력으로 중앙정부 철도 계획에\n'제물포' 세 글자를 새겨넣겠습니다." },
+                  { id: 1, title: "행정", desc: "찾아가는 지능형 밀착 행정", emoji: "🤖", keyword: "#AI_민원버스", color: "bg-blue-500/20 backdrop-blur-md border border-blue-400/30 md:bg-blue-100 md:border-blue-300", shadow: "shadow-[0_4px_0_#60a5fa]", text: "text-blue-700", benefit: "구청까지 가지 마세요.\n버스 한 대가 완벽한 구청이 되어 찾아갑니다!" },
+                  { id: 2, title: "주권", desc: "디지털 주민 주권 시대", emoji: "🤝", keyword: "#주민주권", color: "bg-teal-500/20 backdrop-blur-md border border-teal-400/30 md:bg-cyan-100 md:border-cyan-300", shadow: "shadow-[0_4px_0_#22d3ee]", text: "text-cyan-700", benefit: "예산 편성권과 결정권,\n구청장의 권한을 주민 여러분께 돌려드립니다." },
+                  { id: 3, title: "에너지", desc: "에너지 연금 도시", emoji: "☀️", keyword: "#에너지연금", color: "bg-yellow-500/20 backdrop-blur-md border border-yellow-400/30 md:bg-yellow-100 md:border-yellow-300", shadow: "shadow-[0_4px_0_#facc15]", text: "text-yellow-700", benefit: "제물포에 산다는 것만으로도\n'에너지 연금' 혜택을 받습니다." },
+                  { id: 4, title: "복지", desc: "제물포 올케어 복지", emoji: "🧸", keyword: "#올케어복지", color: "bg-pink-500/20 backdrop-blur-md border border-pink-400/30 md:bg-pink-100 md:border-pink-300", shadow: "shadow-[0_4px_0_#f472b6]", text: "text-pink-700", benefit: "아프기 전에 미리 챙겨드립니다.\n병원비 걱정 없는 건강 도시를 만듭니다." },
+                  { id: 5, title: "경제", desc: "K-푸드 글로벌 명소화", emoji: "🍱", keyword: "#K-푸드", color: "bg-orange-500/20 backdrop-blur-md border border-orange-400/30 md:bg-orange-100 md:border-orange-300", shadow: "shadow-[0_4px_0_#fb923c]", text: "text-orange-700", benefit: "장사가 안 돼서 문 닫는 일이 없도록,\n남궁형이 든든한 버팀목이 되겠습니다." },
+                  { id: 6, title: "문화", desc: "문화 마법 도시", emoji: "✨", keyword: "#문화마법", color: "bg-purple-500/20 backdrop-blur-md border border-purple-400/30 md:bg-purple-100 md:border-purple-300", shadow: "shadow-[0_4px_0_#c084fc]", text: "text-purple-700", benefit: "제물포의 역사가 곧 돈이 되고,\n밥이 되는 문화 산업을 만듭니다." },
+                  { id: 7, title: "교통", desc: "인천역 KTX & 트램", emoji: "🚄", keyword: "#KTX트램", color: "bg-indigo-500/20 backdrop-blur-md border border-indigo-400/30 md:bg-green-100 md:border-green-300", shadow: "shadow-[0_4px_0_#4ade80]", text: "text-green-700", benefit: "남궁형의 정치력으로 중앙정부 철도 계획에\n'제물포' 세 글자를 새겨넣겠습니다." },
                 ].map((item, idx) => {
                   const borderColor = item.color.split(' ').find(c => c.startsWith('border-')) || 'border-slate-200';
 
@@ -386,7 +389,7 @@ export const CosmicMap = () => {
                         <div
                           className={`
                       absolute inset-0 flex flex-col items-center justify-center
-                      ${item.color} border-2 rounded-3xl ${item.shadow}
+                      ${item.color} md:border-2 rounded-3xl ${item.shadow}
                       md:hover:shadow-glow transition-shadow duration-300
                     `}
                           style={{ backfaceVisibility: 'hidden' }}
@@ -394,7 +397,7 @@ export const CosmicMap = () => {
                           <div className="text-4xl drop-shadow-md mb-2 animate-bounce-slow">
                             {item.emoji}
                           </div>
-                          <span className={`font-black ${item.text} text-sm mb-1.5 drop-shadow-sm`}>
+                          <span className={`font-black ${item.text} text-sm mb-1.5 drop-shadow-md`}>
                             {item.title}
                           </span>
                           {/* Desktop Manifesto Phrase */}
@@ -402,7 +405,7 @@ export const CosmicMap = () => {
                             {item.desc}
                           </span>
                           <div className="bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/50 shadow-sm">
-                            <span className={`text-[10px] font-extrabold ${item.text} tracking-tight`}>
+                            <span className={`text-[10px] font-extrabold ${item.text} tracking-tight drop-shadow-sm`}>
                               {item.keyword}
                             </span>
                           </div>
