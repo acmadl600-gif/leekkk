@@ -478,11 +478,10 @@ export const CosmicMap = () => {
                     flex flex-col items-center justify-center 
                     transition-all duration-300
                     ${isMobile
-                        ? `aspect-square rounded-2xl border border-white/20 ${district.shadow}`
+                        ? `aspect-square rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 ${district.shadow}`
                         : 'rounded-xl hover:bg-white/5 hover:-translate-y-1 py-2'
                       }
                   `}
-                    style={isMobile ? { backgroundColor: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)' } : {}}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -492,9 +491,9 @@ export const CosmicMap = () => {
                       <>
                         {/* Mobile: Cute 3D Emoji */}
                         <div className="text-3xl drop-shadow-md mb-1 animate-bounce-slow">{district.emoji}</div>
-                        <span className={`font-black ${district.text} text-xs mb-0.5 text-center`}>{district.name}</span>
-                        <div className="bg-white/60 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
-                          <span className={`text-[10px] font-bold ${district.text} tracking-tighter`}>{district.keyword}</span>
+                        <span className={`font-bold text-cyan-300 text-xs mb-0.5 text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]`}>{district.name}</span>
+                        <div className="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-white/40 shadow-sm">
+                          <span className={`text-[10px] font-bold text-slate-900 tracking-tighter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]`}>{district.keyword}</span>
                         </div>
                       </>
                     ) : (
