@@ -525,56 +525,23 @@ export const CosmicMap = () => {
         </div> {/* End Right Content Column */}
       </div> {/* End Main Layout Container */}
 
-      {/* Premium Neon Glass Social Media Footer */}
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[60] flex gap-8 items-center justify-center w-full max-w-sm px-4">
-        {/* Namuwiki - Mint/Cyan Neon */}
-        <a
-          href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95"
-          target="_blank"
-          className="
-            relative group flex items-center justify-center
-            w-14 h-14 md:w-16 md:h-16 rounded-full
-            bg-white/10 backdrop-blur-xl border border-white/30 shadow-inner
-            shadow-[0_0_20px_rgba(0,255,255,0.5)]
-            hover:scale-125 hover:shadow-[0_0_40px_rgba(0,255,255,0.9)]
-            transition-all duration-300 animate-pulse
-          "
-        >
-          <Book className="w-6 h-6 md:w-8 md:h-8 text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]" />
-        </a>
-
-        {/* Instagram - Pink-Orange Neon */}
-        <a
-          href="https://www.instagram.com/namlider123"
-          target="_blank"
-          className="
-            relative group flex items-center justify-center
-            w-14 h-14 md:w-16 md:h-16 rounded-full
-            bg-white/10 backdrop-blur-xl border border-white/30 shadow-inner
-            shadow-[0_0_20px_rgba(255,0,150,0.5)]
-            hover:scale-125 hover:shadow-[0_0_40px_rgba(255,0,150,0.9)]
-            transition-all duration-300 animate-pulse
-          "
-        >
-          <Instagram className="w-6 h-6 md:w-8 md:h-8 text-pink-500 drop-shadow-[0_0_8px_rgba(255,0,150,0.8)]" />
-        </a>
-
-        {/* Facebook - Bright Blue Neon */}
-        <a
-          href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/"
-          target="_blank"
-          className="
-            relative group flex items-center justify-center
-            w-14 h-14 md:w-16 md:h-16 rounded-full
-            bg-white/10 backdrop-blur-xl border border-white/30 shadow-inner
-            shadow-[0_0_20px_rgba(0,100,255,0.5)]
-            hover:scale-125 hover:shadow-[0_0_40px_rgba(0,100,255,0.9)]
-            transition-all duration-300 animate-pulse
-          "
-        >
-          <Facebook className="w-6 h-6 md:w-8 md:h-8 text-blue-500 drop-shadow-[0_0_8px_rgba(0,100,255,0.8)]" />
-        </a>
-      </div>
+      {/* Mobile Sticky Footer */}
+      {isMobile && (
+        <div className="fixed bottom-0 left-0 right-0 z-[60] bg-[#020617]/90 backdrop-blur-xl border-t border-white/10 p-3 pb-8 grid grid-cols-3 gap-2">
+          <a href="https://namu.wiki/w/%EB%82%A8%EA%B6%81%ED%98%95" target="_blank" className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all">
+            <Book className="w-5 h-5 text-green-400 mb-1" />
+            <span className="text-[10px] text-slate-400">나무위키</span>
+          </a>
+          <a href="https://www.instagram.com/namlider123" target="_blank" className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all">
+            <Instagram className="w-5 h-5 text-pink-500 mb-1" />
+            <span className="text-[10px] text-slate-400">인스타그램</span>
+          </a>
+          <a href="https://www.facebook.com/people/%EB%82%A8%EA%B6%81%ED%98%95/100011423920163/" target="_blank" className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-white/5 active:scale-95 transition-all">
+            <Facebook className="w-5 h-5 text-blue-500 mb-1" />
+            <span className="text-[10px] text-slate-400">페이스북</span>
+          </a>
+        </div>
+      )}
 
       {/* 5. 정책 상세 모달: High-End Futuristic Glassmorphism */}
       <AnimatePresence>
